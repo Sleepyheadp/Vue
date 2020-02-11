@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     hello vue-douban
-    我又写了一些东西
+    我又写了一些东西........
     <div class="hh">
       
     </div>
