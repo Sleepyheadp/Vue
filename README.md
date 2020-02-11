@@ -1,4 +1,4 @@
-# vue-douban
+# vue-douban-review
 
 ## Project setup
 ```

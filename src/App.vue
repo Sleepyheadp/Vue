@@ -1,21 +1,20 @@
 <template>
   <div id="app">
-    hello vue-douban
-    我又写了一些东西........
-    <div class="hh">
-      
-    </div>
+    <!--将一级路由渲染到页面上-->
+    <router-view></router-view>
+    <Tabbar></Tabbar>
   </div>
 </template>
 
 <style lang="scss">
-    .hh{
-      width:100px;
-      height:100px;
-      background-color:pink;
-    }
+
 </style>
 
 <script>
-
-</script>
+import Tabbar from "./components/Tabbar"
+export default {
+  components:{
+    Tabbar
+  }
+}
+</script>>
