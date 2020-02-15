@@ -1,6 +1,6 @@
 <template>
     <div class="broadcast">
-        broadcast
+      <Tabbar></Tabbar>
     </div>
 </template>    
 
@@ -9,7 +9,10 @@
 </style>
 
 <script>
-    export default{
-
-    }
+import Tabbar from "../../components/Tabbar"
+export default {
+  components:{
+    Tabbar
+  }
+}
 </script>  

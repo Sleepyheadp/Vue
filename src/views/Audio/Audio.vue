@@ -1,6 +1,6 @@
 <template>
     <div class="audio">
-        audio
+      <Tabbar></Tabbar>
     </div>
 </template>    
 
@@ -9,7 +9,11 @@
 </style>
 
 <script>
-    export default{
-
-    }
+//引入底部Tabbar
+import Tabbar from "../../components/Tabbar"
+export default {
+  components:{
+    Tabbar
+  }
+}
 </script>  

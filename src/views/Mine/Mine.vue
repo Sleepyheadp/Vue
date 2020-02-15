@@ -1,6 +1,7 @@
 <template>
     <div class="mine">
-        mine
+      <div style="height:2000px"></div>
+      <Tabbar></Tabbar>
     </div>
 </template>    
 
@@ -9,7 +10,10 @@
 </style>
 
 <script>
-    export default{
-
-    }
+import Tabbar from "../../components/Tabbar"
+export default {
+  components:{
+    Tabbar
+  }
+}
 </script>  

@@ -7,9 +7,11 @@ import audio from "./audio"
 import broadcast from "./broadcast"
 import mine from "./mine"
 import home from "./home"
+import notfound from "./notfound"
 const routes = [
   {path:"",redirect:"/home"},
-  home,audio,broadcast,mine,group
+  home,audio,broadcast,mine,group,notfound,
+  {path:"*",redirect:"/notfound"}
 ]
 
 const router = new VueRouter({
