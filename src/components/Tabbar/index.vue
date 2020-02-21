@@ -51,7 +51,7 @@ export default {
     left:0;
     bottom:0;
     width:100%;
-    height:60px;
+    height:62px;
     background-color: #f7f7f7;
     display:flex;
     border-top:1px solid #ccc;

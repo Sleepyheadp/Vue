@@ -1,6 +1,5 @@
 <template>
     <div class="home">
-      <Tabbar></Tabbar>
       <banner></banner>
       <div class="navbar" :class="{fixedTop:isFixed}">
         <span
@@ -13,6 +12,8 @@
       <div :class="{fixbox:isFixed}">
         <MovieBox :type="type"></MovieBox>
       </div>
+      <Backtop></Backtop>
+      <Tabbar></Tabbar>
     </div>
 </template>    
 
@@ -24,10 +25,12 @@ import Banner from "../../components/Banner"
 // import Banner from "@/components/Banner"  与上一行的效果相同
 
 import MovieBox from "./MovieBox"
+//引入backtop
+import Backtop from "./Backtop"
 export default {
   name:"home",
   components:{
-    Tabbar,Banner,MovieBox
+    Tabbar,Banner,MovieBox,Backtop
   },
   data(){
     return {
@@ -36,13 +39,14 @@ export default {
         {id:1,title:"正在热映",type:"in_theaters"},
         {id:2,title:"即将上映",type:"coming_soon"}
       ],
-      isFixed:false
+      isFixed:false,
+      dis:0
     }
   },
   methods:{
     handleEvent(e){
       let sTop = document.documentElement.scrollTop || document.body.scrollTop;
-      console.log("1111111111111")
+      //console.log("1111111111111")
       if(sTop >= 270 && !this.isFixed){
         this.isFixed = true;
       }else if(sTop<270 && this.isFixed){
@@ -52,10 +56,16 @@ export default {
   },
   activated(){
     window.addEventListener("scroll",this.handleEvent)
+    window.scrollTo(0,this.dis)
   },
   deactivated(){
     window.removeEventListener("scroll",this.handleEvent)
     this.isFixed = false;
+  },
+  beforeRouteLeave(to,from,next){
+    let dis = document.documentElement.scrollTop || document.body.scrollTop;
+    this.dis = dis;//记录当前的距离
+    next()
   },
   created(){
     

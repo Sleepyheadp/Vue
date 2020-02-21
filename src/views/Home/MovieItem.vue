@@ -1,5 +1,9 @@
 <template>
-  <div class="movie-item">
+  <router-link 
+    class="movie-item"
+    tag="div"
+    :to="{name:'moviedetail',params:{id:movie.id}}"
+  >
       <div class="img-box">
         <img  width="100%" :src="getImages(movie.images.small)" alt="">
       </div>
@@ -13,7 +17,7 @@
           <div class="rating">{{movie.rating.average}}</div>
         </div>
       </div>
-  </div>
+  </router-link>
 </template>
 
 <script>

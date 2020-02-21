@@ -1,5 +1,5 @@
 <template>
-  <div class="app-header" v-show="isShow">
+  <div class="app-header" v-show="isShow" v-backTop:dblclick>
       <div class="left">
         <i :class="['fa','fa-' + icon]"></i>
         <span>{{title}}</span>

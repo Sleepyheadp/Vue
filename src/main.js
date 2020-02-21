@@ -15,9 +15,14 @@ import "../node_modules/swiper/css/swiper.min.css"
 import axios from "axios"
 Vue.prototype.$http = axios  //方便我们以后在组件中通过this.$http 获取axios
 //引入mint-ui中的无限滚动  在全局都可以使用，而toast只能哪个组件用就在哪个组件中引用
-import {InfiniteScroll} from 'mint-ui';
+import {InfiniteScroll,Header,Button,Tabbar, TabItem } from 'mint-ui';
 Vue.use(InfiniteScroll);
-
+Vue.component("mt-header", Header);
+Vue.component("mt-button", Button);
+Vue.component("mt-tabbar", Tabbar);
+Vue.component("mt-tab-item", TabItem);
+//引入自定义指令
+import "./modules/directive"
 new Vue({
   router,
   store,

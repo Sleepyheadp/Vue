@@ -8,9 +8,11 @@ import broadcast from "./broadcast"
 import mine from "./mine"
 import home from "./home"
 import notfound from "./notfound"
+import moviedetail from "./moviedetail"
+import moviedetailActor from "./moviedetailActor"
 const routes = [
-  {path:"",redirect:"/home"},
-  home,audio,broadcast,mine,group,notfound,
+  {path:"",redirect:"/mine"},
+  home,audio,broadcast,mine,group,notfound,moviedetail,moviedetailActor,
   {path:"*",redirect:"/notfound"}
 ]
 
