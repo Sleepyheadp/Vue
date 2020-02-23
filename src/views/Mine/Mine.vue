@@ -1,6 +1,6 @@
 <template>
     <div class="mine">
-      <mt-tabbar>
+      <mt-tabbar fixed>
         <mt-tab-item
           v-for = "nav in navs"
           :key = nav.id
@@ -32,5 +32,10 @@ export default {
 </script> 
 
 <style lang="scss">
-
+  .mint-tab-item{
+    padding:20px 0;
+    a{
+      font-size:16px!important;
+    }
+  }
 </style>

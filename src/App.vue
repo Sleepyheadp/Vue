@@ -19,6 +19,10 @@ import Header from "@/components/Header"
 export default {
   components:{
     Header
+  },
+  created(){
+    //初始化cars
+    this.$store.dispatch("initCar")
   }
 }
 </script>>

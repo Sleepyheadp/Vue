@@ -1,58 +1,58 @@
 <template>
   <div class="list">
-    <div class="mine-list" style="padding-top:50px">
-      <p>num:{{num}}</p>
-      <p>doubleNum:{{doubleNum}}</p>
-      <p><button @click="CHANGE_NUM">changeNum</button></p>
-      <p><button @click="getNumFromBackEnd">getRandom</button></p>
-    </div>
+        <mt-cell
+            :title="good.CommodityName"
+            :label="'￥'+good.OriginalPrice"
+            v-for="good in goods"
+            :key="good.CommodityId"
+        >
+            <mt-button @click = "addGoodInCars(good)" size="small" type="danger">购买</mt-button>
+            <img  :src="good.SmallPic" width="48" height="48">
+        </mt-cell>
   </div>
 </template>
 
 <script>
-import {mapState,mapGetters,mapMutations,mapActions} from "vuex"
-//为什么不引入CHANGE_NUM也可以直接用？
-import {CHANGE_NUM,RANDOM_NUM} from "@/store/Num/const"
+import {mapActions} from "vuex"
 export default {
-  computed:{
-    /*
-      data(){
+    data(){
         return {
-          num:this.$store.state.Num.num,
+            goods:[]
         }
-      },
-      ------
-      ...mapState(["num"]),
-    */
-    ...mapState({
-      num:state=>state.Num.num  //重命名的写法
-    }),
-    /*
-      默认写法
-      doubleNum(){
-        return this.$store.getters.doubleNum
-      },
-    */
-    ...mapGetters(["doubleNum"])
-  },
-  methods:{
-    /*
-      默认写法
-      changeNum(){
-        this.$store.commit("changeNum")
-      }
-    */
-    ...mapMutations(["CHANGE_NUM"]),
-    /*
-      getRandom(){
-        this.$store.dispatch("getNumFromBackEnd")
-      }
-    */
-    ...mapActions(["getNumFromBackEnd"])
-  }
+    },
+    created(){
+        this.$http.get("/api/fruits.json").then(res=>{
+            //console.log(res.data.CommodityList)
+            this.goods = res.data.CommodityList
+            //console.log(this.goods)
+        })
+    },
+    methods:{
+        /*  
+            注意上面@click在调用方法时候需要调用buyGood而不是addGoodInCars方法
+            buyGood(good){
+                this.$store.dispatch("addGoodInCars",good)
+            }
+        */
+       ...mapActions(["addGoodInCars"])
+    }
 }
 </script>
 
-<style>
-
+<style lang="scss">
+     .mint-cell{
+        margin:15px 0;
+    }
+    .mint-cell-title{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        img{
+            float:left;
+        }
+    }
+    .mint-cell-label{
+        font-size: 18px;
+        color:#b09090;
+    }
 </style>
