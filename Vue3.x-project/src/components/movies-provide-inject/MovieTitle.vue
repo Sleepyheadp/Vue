@@ -3,7 +3,8 @@
 </template>
 <script>
 export default {
-  props: ["title"],
+  // 获取祖先元素定义的数据，直接可以使用
+  inject: ['title']
 };
 </script>
 <style scoped>

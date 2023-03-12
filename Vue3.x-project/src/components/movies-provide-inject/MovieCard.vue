@@ -1,9 +1,6 @@
 <template>
   <div class="card">
-    <MovieItem
-      :title="movie.title"
-      :description="movie.description"
-    />
+    <MovieItem :description="movie.description" />
   </div>
 </template>
 <script>
@@ -15,11 +12,15 @@ export default {
   data() {
     return {
       movie: {
-        title: "电影",
+        title: "电影-inject直接获取",
         description: "这是一段电影的描述",
       },
     };
   },
+  // 定义向下传递的数据
+  provide() {
+    return { title: this.movie.title }
+  }
 };
 </script>
 <style scoped>
