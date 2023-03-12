@@ -1,5 +1,5 @@
-<script setup>
-// Vue3.x的写法
+<!-- <script>
+Vue3.x的写法
 defineProps({
   msg: String,
   version: {
@@ -10,10 +10,10 @@ defineProps({
     }
   }
 })
-</script>
+</script> -->
 
 
-<!-- <script>
+<script>
 export default {
   props: {
     msg: {
@@ -33,10 +33,13 @@ export default {
     }
   }
 }
-</script> -->
+</script>
 
 <template>
-  <p>hello {{ msg }} {{ version }}</p>
+  <div>
+    <p>hello {{ msg }} {{ version }}</p>
+    <slot></slot>
+  </div>
 </template>
 
 <style scoped></style>
