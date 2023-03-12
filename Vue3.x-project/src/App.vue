@@ -1,12 +1,12 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import Home from "./page/home.vue"
+export default {
+  components: { Home }
+}
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue" version=3>
-    <div>slot插槽内容</div>
-    <div>....</div>
-  </HelloWorld>
+  <Home></Home>
 </template>
 
 <style scoped></style>
