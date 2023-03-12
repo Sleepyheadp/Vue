@@ -1,7 +1,7 @@
 <template>
     <div>
         <p>当前页：{{ currentPage }}</p>
-        <button v-for="i in totalPage" :key="i">{{ i }}</button>
+        <button v-for="i in totalPage" @click="currentPage = i" :key="i">{{ i }}</button>
     </div>
 </template>
 <script>
