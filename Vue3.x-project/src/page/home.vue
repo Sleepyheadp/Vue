@@ -13,15 +13,17 @@
         <!-- 在组件中使用watch监听动态属性 -->
         <addMoreWatch :totalPage="totalPage" :currentPageProps="currentPage"></addMoreWatch>
         <button @click="totalPage += 1">增加页数</button>
-
+        <!-- props的高级版 => provide/inject的使用 -->
+        <movieCard></movieCard>
     </div>
 </template>
 <script>
 import HelloWorld from '../components/HelloWorld.vue'
 import sonToFather from '../components/sonToFather.vue'
 import addMoreWatch from '../components/addMoreWatch.vue'
+import movieCard from '../components/movies-provide-inject/MovieCard.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard },
     data() {
         return {
             count: 0,
@@ -42,6 +44,7 @@ export default {
     margin: 0;
     padding: 0;
     font-family: Arial, "PingFang SC", "Microsoft Yahei", sans-serif;
+    margin-bottom: 10px;
 }
 
 body {
