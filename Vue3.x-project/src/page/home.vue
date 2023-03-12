@@ -29,6 +29,8 @@
         <movieCard></movieCard>
         <!-- css modules -->
         <cssModule></cssModule>
+        <!-- :deep的用法 -->
+        <deepStyle></deepStyle>
     </div>
 </template>
 <script>
@@ -38,8 +40,9 @@ import addMoreWatch from '../components/addMoreWatch.vue'
 import movieCard from '../components/movies-provide-inject/MovieCard.vue'
 import slotSonAttr from '../components/slotSonAttrs.vue'
 import cssModule from '../components/cssModule.vue'
+import deepStyle from '../components/deepStyle.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle },
     data() {
         return {
             count: 0,
@@ -54,7 +57,12 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="scss" scoped>
+.title :deep(p) {
+    background: hsl(220deg, 100%, 60%);
+    font-size: 24px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
