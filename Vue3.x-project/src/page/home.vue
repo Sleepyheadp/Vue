@@ -27,6 +27,8 @@
         <button @click="totalPage += 1">增加页数</button>
         <!-- props的高级版 => provide/inject的使用 -->
         <movieCard></movieCard>
+        <!-- css modules -->
+        <cssModule></cssModule>
     </div>
 </template>
 <script>
@@ -35,8 +37,9 @@ import sonToFather from '../components/sonToFather.vue'
 import addMoreWatch from '../components/addMoreWatch.vue'
 import movieCard from '../components/movies-provide-inject/MovieCard.vue'
 import slotSonAttr from '../components/slotSonAttrs.vue'
+import cssModule from '../components/cssModule.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule },
     data() {
         return {
             count: 0,
