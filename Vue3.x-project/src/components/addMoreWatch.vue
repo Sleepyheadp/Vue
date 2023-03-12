@@ -16,7 +16,6 @@ export default {
         totalPage(newVal, oldVal) {
             // 子组件不能改变父组件传递过来的currentPage,所以要创建新变量
             this.currentPage = newVal
-            console.log(newVal, oldVal)
         }
     }
 }
