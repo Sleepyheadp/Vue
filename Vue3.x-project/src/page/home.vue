@@ -1,13 +1,25 @@
 <template >
     <div>
-        <!-- slot插槽用法 -->
+        <!-- slot插槽简单用法 -->
         <HelloWorld msg="Vite + Vue" version=3>
             <template v-slot:more>
-                <!-- 可以简写为#more -->
-                <div>slot插槽内容</div>
-                <div>....</div>
+                <!-- v-slot:more可以简写为#more -->
+                <div>slot插槽内容:父组件template中添加div</div>
             </template>
         </HelloWorld>
+        <!-- 在传递的slot模版中访问子组件的属性 -->
+        <slot-son-attr>
+            <!-- 简写：<template #contact="props"> -->
+            <template v-slot:contact="props">
+                <p>{{ props.contact.name }}</p>
+                <p>{{ props.contact.email }}</p>
+            </template>
+            <!-- 解构：
+                <template #contact="{ contact }"> 
+                <p>{{ contact.name }}</p>
+                <p>{{ contact.email }}</p>
+            -->
+        </slot-son-attr>
         <!-- $emit用法 -->
         <son-to-father @handleAdd="addMore" :count='count'></son-to-father>
         <!-- 在组件中使用watch监听动态属性 -->
@@ -22,13 +34,14 @@ import HelloWorld from '../components/HelloWorld.vue'
 import sonToFather from '../components/sonToFather.vue'
 import addMoreWatch from '../components/addMoreWatch.vue'
 import movieCard from '../components/movies-provide-inject/MovieCard.vue'
+import slotSonAttr from '../components/slotSonAttrs.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr },
     data() {
         return {
             count: 0,
             totalPage: 6,
-            currentPage: 0
+            currentPage: 6
         }
     },
     methods: {
