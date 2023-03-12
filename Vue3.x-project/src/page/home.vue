@@ -31,6 +31,10 @@
         <cssModule></cssModule>
         <!-- :deep的用法 -->
         <deepStyle></deepStyle>
+        <!-- slotted的用法 -->
+        <slottedStyle>
+            <div class="desc"> slot中的文本：slotted的使用</div>
+        </slottedStyle>
     </div>
 </template>
 <script>
@@ -41,8 +45,9 @@ import movieCard from '../components/movies-provide-inject/MovieCard.vue'
 import slotSonAttr from '../components/slotSonAttrs.vue'
 import cssModule from '../components/cssModule.vue'
 import deepStyle from '../components/deepStyle.vue'
+import slottedStyle from '../components/slottedStyle.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle },
     data() {
         return {
             count: 0,
