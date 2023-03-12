@@ -1,22 +1,24 @@
-<script>
+<script setup>
 // Vue3.x的写法
-// <script setup>
-// defineProps({
-//   msg: String,
-//   default: 'Vite + Vue3.x'
-// }, {
-//   version: Number,
-//   default: 3,
-//   validator(val) {
-//     return val > 2
-//   }
-// })
+defineProps({
+  msg: String,
+  version: {
+    type: Number,
+    default: 3,
+    validator(val) {
+      return val > 2
+    }
+  }
+})
+</script>
 
+
+<!-- <script>
 export default {
   props: {
     msg: {
       type: String,
-      default: 'Vite + Vue2.x'
+      default: 'Vite + Vue'
     },
     version: {
       // 传参类型
@@ -31,8 +33,7 @@ export default {
     }
   }
 }
-
-</script>
+</script> -->
 
 <template>
   <p>hello {{ msg }} {{ version }}</p>
