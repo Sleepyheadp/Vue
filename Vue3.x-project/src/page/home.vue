@@ -35,6 +35,8 @@
         <slottedStyle>
             <div class="desc"> slot中的文本：slotted的使用</div>
         </slottedStyle>
+        <!-- 动态绑定样式 -->
+        <dynamicStyle></dynamicStyle>
     </div>
 </template>
 <script>
@@ -46,8 +48,9 @@ import slotSonAttr from '../components/slotSonAttrs.vue'
 import cssModule from '../components/cssModule.vue'
 import deepStyle from '../components/deepStyle.vue'
 import slottedStyle from '../components/slottedStyle.vue'
+import dynamicStyle from '../components/dynamicStyle.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle },
     data() {
         return {
             count: 0,
