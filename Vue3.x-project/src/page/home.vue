@@ -38,8 +38,9 @@
         <!-- 动态绑定样式 -->
         <dynamicStyle></dynamicStyle>
         <!-- 让组件支持v-model指令 -->
-        <searchInput v-model="searchTerm"></searchInput>
-        <p>{{ searchTerm }}</p>
+        <searchInput v-model:searchTerm="searchTerm" v-model:category="category"></searchInput>
+        <p>搜索词：{{ searchTerm }}</p>
+        <p>类别：{{ category }}</p>
     </div>
 </template>
 <script>
@@ -60,7 +61,8 @@ export default {
             count: 0,
             totalPage: 6,
             currentPage: 6,
-            searchTerm: ''
+            searchTerm: '',
+            category: 'default',
         }
     },
     methods: {
