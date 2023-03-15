@@ -37,6 +37,9 @@
         </slottedStyle>
         <!-- 动态绑定样式 -->
         <dynamicStyle></dynamicStyle>
+        <!-- 让组件支持v-model指令 -->
+        <searchInput v-model="searchTerm"></searchInput>
+        <p>{{ searchTerm }}</p>
     </div>
 </template>
 <script>
@@ -49,13 +52,15 @@ import cssModule from '../components/cssModule.vue'
 import deepStyle from '../components/deepStyle.vue'
 import slottedStyle from '../components/slottedStyle.vue'
 import dynamicStyle from '../components/dynamicStyle.vue'
+import searchInput from '../components/searchInput.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput },
     data() {
         return {
             count: 0,
             totalPage: 6,
-            currentPage: 6
+            currentPage: 6,
+            searchTerm: ''
         }
     },
     methods: {
@@ -90,10 +95,11 @@ body {
 
 #app {
     width: 100vw;
-    height: 100vh;
+    // height: 100vh;
     max-width: 100%;
     display: grid;
     place-items: center;
+    margin-bottom: 200px;
 }
 
 .container {

@@ -12,4 +12,9 @@ export default {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+#root {
+  margin-bottom: 200px !important;
+  height: 100%;
+}
+</style>
