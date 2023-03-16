@@ -50,6 +50,15 @@
         <TextHeading level="1">一级标题</TextHeading>
         <TextHeading level="2">二级标题</TextHeading>
         <TextHeading level="3">三级标题</TextHeading>
+        <!-- is动态切换组件 -->
+        <component :is='currentForm'></component>
+        <div class="buttons">
+            <button v-if="currentForm === 'RegisterForm'" @click="currentForm = 'ProfileForm'">下一步</button>
+            <div v-else-if="currentForm === 'ProfileForm'">
+                <button @click="currentForm = 'RegisterForm'">上一步</button>
+                <button>完成</button>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -66,8 +75,10 @@ import searchInput from '../components/searchInput.vue'
 import autoFoucs from '../components/autoFoucs.vue'
 import customDirective from '../components/customDirective.vue'
 import TextHeading from '../components/textHeading.vue'
+import ProfileForm from '../components/is-component/ProfileForm.vue'
+import RegisterForm from '../components/is-component/RegisterForm.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm },
     data() {
         return {
             count: 0,
@@ -75,6 +86,7 @@ export default {
             currentPage: 6,
             searchTerm: '',
             category: 'default',
+            currentForm: 'RegisterForm'
         }
     },
     methods: {
@@ -101,7 +113,6 @@ export default {
     margin: 0;
     padding: 0;
     font-family: Arial, "PingFang SC", "Microsoft Yahei", sans-serif;
-    margin-bottom: 10px;
 }
 
 body {
@@ -115,15 +126,19 @@ body {
 
 #app {
     width: 100vw;
-    // height: 100vh;
+    height: 100vh;
     max-width: 100%;
     display: grid;
     place-items: center;
-    margin-bottom: 200px;
 }
 
-.container {
-    width: 60vw;
+input {
+    padding: 8px 14px;
+    border: 1px solid hsl(280deg, 50%, 50%);
+    border-radius: 4px;
+    outline: none;
+    background: hsl(280deg, 50%, 30%, 0.2);
+    color: white;
 }
 
 button {
@@ -131,10 +146,22 @@ button {
     background: linear-gradient(90deg,
             hsl(240deg, 50%, 50%),
             hsl(280deg, 50%, 50%));
-    padding: 1em 2em;
-    margin-top: 24px;
-    margin-right: 12px;
+    padding: 12px 18px;
+    margin-top: 12px;
     border-radius: 4px;
     color: white;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 80px 80px;
+    grid-gap: 12px;
+    justify-content: space-between;
 }
 </style>
