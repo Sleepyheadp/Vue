@@ -41,6 +41,9 @@
         <searchInput v-model:searchTerm="searchTerm" v-model:category="category"></searchInput>
         <p>搜索词：{{ searchTerm }}</p>
         <p>类别：{{ category }}</p>
+        <!-- refs:通过调用子组件的方法 -->
+        <span>ref：</span>
+        <autoFoucs ref="autofocus"></autoFoucs>
     </div>
 </template>
 <script>
@@ -54,8 +57,9 @@ import deepStyle from '../components/deepStyle.vue'
 import slottedStyle from '../components/slottedStyle.vue'
 import dynamicStyle from '../components/dynamicStyle.vue'
 import searchInput from '../components/searchInput.vue'
+import autoFoucs from '../components/autoFoucs.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs },
     data() {
         return {
             count: 0,
@@ -69,6 +73,12 @@ export default {
         addMore() {
             this.count++
         }
+    },
+    mounted() {
+        setTimeout(() => {
+            console.log(this.$refs.autofocus.inputText);
+            this.$refs.autofocus.inputBlur()
+        }, 5000);
     }
 }
 </script>
