@@ -62,6 +62,13 @@
                 <button>完成</button>
             </div>
         </div>
+        <!--
+            teleport：子绝父相的时候，子元素就算设置了定位，也是相对父元素的位置。
+            假如我们想要固定一个弹窗，绑定到指定的元素上就可以用teleport。
+            疑问：为啥不直接用fixed定位？
+            fixed是固定到当前视口的位置，不随滚动而滚动。teleport是绑定到指定的组件上
+        -->
+        <TeleportBox></TeleportBox>
     </div>
 </template>
 <script>
@@ -80,8 +87,9 @@ import customDirective from '../components/customDirective.vue'
 import TextHeading from '../components/textHeading.vue'
 import ProfileForm from '../components/is-component/ProfileForm.vue'
 import RegisterForm from '../components/is-component/RegisterForm.vue'
+import TeleportBox from '../components/TeleportBox.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox },
     data() {
         return {
             count: 0,
