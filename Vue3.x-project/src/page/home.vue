@@ -51,7 +51,10 @@
         <TextHeading level="2">二级标题</TextHeading>
         <TextHeading level="3">三级标题</TextHeading>
         <!-- is动态切换组件 -->
-        <component :is='currentForm'></component>
+        <!-- keep-alive缓存组件：防止数据丢失 -->
+        <keep-alive>
+            <component :is='currentForm'></component>
+        </keep-alive>
         <div class="buttons">
             <button v-if="currentForm === 'RegisterForm'" @click="currentForm = 'ProfileForm'">下一步</button>
             <div v-else-if="currentForm === 'ProfileForm'">
