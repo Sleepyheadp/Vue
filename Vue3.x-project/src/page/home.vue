@@ -44,6 +44,8 @@
         <!-- refs:通过调用子组件的方法 -->
         <span>ref：</span>
         <autoFoucs ref="autofocus"></autoFoucs>
+        <!-- 自定义指令 -->
+        <customDirective></customDirective>
     </div>
 </template>
 <script>
@@ -58,8 +60,9 @@ import slottedStyle from '../components/slottedStyle.vue'
 import dynamicStyle from '../components/dynamicStyle.vue'
 import searchInput from '../components/searchInput.vue'
 import autoFoucs from '../components/autoFoucs.vue'
+import customDirective from '../components/customDirective.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective },
     data() {
         return {
             count: 0,
