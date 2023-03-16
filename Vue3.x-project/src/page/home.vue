@@ -46,6 +46,10 @@
         <autoFoucs ref="autofocus"></autoFoucs>
         <!-- 自定义指令 -->
         <customDirective></customDirective>
+        <!-- 动态 HTML 元素  -->
+        <TextHeading level="1">一级标题</TextHeading>
+        <TextHeading level="2">二级标题</TextHeading>
+        <TextHeading level="3">三级标题</TextHeading>
     </div>
 </template>
 <script>
@@ -61,8 +65,9 @@ import dynamicStyle from '../components/dynamicStyle.vue'
 import searchInput from '../components/searchInput.vue'
 import autoFoucs from '../components/autoFoucs.vue'
 import customDirective from '../components/customDirective.vue'
+import TextHeading from '../components/textHeading.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading },
     data() {
         return {
             count: 0,
