@@ -77,6 +77,8 @@
         <!-- mixin使用 -->
         <PaginationMixin :totalPage="totalPage" :defaultCurrentPage="currentPage"></PaginationMixin>
         <PaginationMixin2 :totalPage="totalPage" :defaultCurrentPage="currentPage" showTotal="true"></PaginationMixin2>
+        <!-- 全局mixins使用 -->
+        {{ siteTitle }}
     </div>
 </template>
 <script>
