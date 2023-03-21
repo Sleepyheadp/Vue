@@ -1,7 +1,8 @@
 <template>
     <div>
         <p>当前页：{{ currentPage }}</p>
-        <a v-for="n in totalPage" @click.prevent="changePage(n)">
+        <p v-if="showTotal">总页数：{{ totalPage }}</p>
+        <a v-for="(n, index) in totalPage" :key="index" @click.prevent="changePage(n)">
             {{ n }}
         </a>
     </div>
@@ -11,6 +12,7 @@ import PaginationMixin from "../mixins/PaginationMixin";
 
 export default {
     mixins: [PaginationMixin],
+    props: ['showTotal']
 };
 </script>
 <style scoped>

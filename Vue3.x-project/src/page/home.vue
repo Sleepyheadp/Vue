@@ -76,7 +76,7 @@
         <BaseCard title="卡片标题">这是卡片内容</BaseCard>
         <!-- mixin使用 -->
         <PaginationMixin :totalPage="totalPage" :defaultCurrentPage="currentPage"></PaginationMixin>
-        <PaginationMixin2 :totalPage="totalPage" :defaultCurrentPage="currentPage"></PaginationMixin2>
+        <PaginationMixin2 :totalPage="totalPage" :defaultCurrentPage="currentPage" showTotal="true"></PaginationMixin2>
     </div>
 </template>
 <script>
