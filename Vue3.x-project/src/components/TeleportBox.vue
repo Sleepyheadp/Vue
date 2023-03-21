@@ -1,5 +1,5 @@
 <template>
-    <Teleport to="body">
+    <Teleport to="#messages">
         <div v-if="show" class="alertBox">
             <div class="closeIcon" @click="show = false">X</div>
             <div class="content">
@@ -24,10 +24,10 @@ export default {
     border: 1px solid hsl(280, 100%, 50%);
     border-radius: 8px;
     padding: 24px;
-
-    position: absolute;
+    position: relative;
+    /* position: absolute;
     right: 12px;
-    bottom: 12px;
+    bottom: 12px; */
 }
 
 .content {
