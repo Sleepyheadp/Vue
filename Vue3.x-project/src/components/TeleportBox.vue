@@ -1,5 +1,5 @@
 <template>
-    <Teleport to="#messages">
+    <Teleport to="#root">
         <div v-if="show" class="alertBox">
             <div class="closeIcon" @click="show = false">X</div>
             <div class="content">
