@@ -15,7 +15,10 @@ export default {
         return {
             currentPage: 1
         }
-    }
+    },
+    mounted() {
+        console.log('组件中的钩子函数...');
+    },
 };
 </script>
 <style scoped>

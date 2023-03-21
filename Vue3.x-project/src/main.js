@@ -16,7 +16,7 @@ const app = createApp(App);
 // 如果mounted和updated的代码相同，可以合并为：
 app.directive("fsize", (el, binding) => {
 	el.style.fontSize = binding.value + (binding.arg || "px");
-	console.log("binding.value:", binding.value, "binding.arg:", binding.arg);
+	// console.log("binding.value:", binding.value, "binding.arg:", binding.arg);
 });
 
 app.mount("#app");
