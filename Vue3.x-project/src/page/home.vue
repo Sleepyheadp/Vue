@@ -68,7 +68,12 @@
             疑问：为啥不直接用fixed定位？
             fixed是固定到当前视口的位置，不随滚动而滚动。teleport是绑定到指定的组件上
         -->
-        <TeleportBox></TeleportBox>
+        <button @click="msgs.push(`这是一段消息${msgs.length + 1}`)">
+            添加消息
+        </button>
+        <TeleportBox v-for="(msg, index) in msgs" :key="index">{{ msg }}</TeleportBox>
+        <!-- 渲染模版JSX用法 -->
+        <BaseCard title="卡片标题">这是卡片内容</BaseCard>
     </div>
 </template>
 <script>
@@ -88,8 +93,9 @@ import TextHeading from '../components/textHeading.vue'
 import ProfileForm from '../components/is-component/ProfileForm.vue'
 import RegisterForm from '../components/is-component/RegisterForm.vue'
 import TeleportBox from '../components/TeleportBox.vue'
+import BaseCard from '../components/BaseCard.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox, BaseCard },
     data() {
         return {
             count: 0,
@@ -97,7 +103,8 @@ export default {
             currentPage: 6,
             searchTerm: '',
             category: 'default',
-            currentForm: 'RegisterForm'
+            currentForm: 'RegisterForm',
+            msgs: [],// 添加的消息
         }
     },
     methods: {
@@ -174,5 +181,14 @@ form {
     grid-template-columns: 80px 80px;
     grid-gap: 12px;
     justify-content: space-between;
+}
+
+#messages {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 12px;
 }
 </style>
