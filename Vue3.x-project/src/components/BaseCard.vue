@@ -1,16 +1,23 @@
-<template>
+<!-- <template>
     <div class="card">
         <div class="title">
             {{ title }}
         </div>
-        <div class="content">
+        <div id="content">
             <slot></slot>
         </div>
     </div>
-</template>
+</template> -->
 <script>
+import { h } from 'vue'
 export default {
     props: ["title"],
+    render() {
+        return h('div', { class: 'card' }, [
+            h('div', { class: 'title' }, this.title),
+            h('div', { id: 'content' }, this.$slots.default()) // slot默认default
+        ])
+    }
 };
 </script>
 <style scoped>
