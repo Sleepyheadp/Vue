@@ -74,6 +74,9 @@
         <TeleportBox v-for="(msg, index) in msgs" :key="index">{{ msg }}</TeleportBox>
         <!-- 渲染模版JSX用法 -->
         <BaseCard title="卡片标题">这是卡片内容</BaseCard>
+        <!-- mixin使用 -->
+        <PaginationMixin :totalPage="totalPage" :defaultCurrentPage="currentPage"></PaginationMixin>
+        <PaginationMixin2 :totalPage="totalPage" :defaultCurrentPage="currentPage"></PaginationMixin2>
     </div>
 </template>
 <script>
@@ -94,13 +97,15 @@ import ProfileForm from '../components/is-component/ProfileForm.vue'
 import RegisterForm from '../components/is-component/RegisterForm.vue'
 import TeleportBox from '../components/TeleportBox.vue'
 import BaseCard from '../components/BaseCard.vue'
+import PaginationMixin from '../components/PaginationMixin.vue'
+import PaginationMixin2 from '../components/PaginationMixin2.vue'
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox, BaseCard },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox, BaseCard, PaginationMixin, PaginationMixin2 },
     data() {
         return {
             count: 0,
             totalPage: 6,
-            currentPage: 6,
+            currentPage: 4,
             searchTerm: '',
             category: 'default',
             currentForm: 'RegisterForm',
