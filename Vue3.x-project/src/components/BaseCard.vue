@@ -15,7 +15,8 @@ export default {
     render() {
         return h('div', { class: 'card' }, [
             h('div', { class: 'title' }, this.title),
-            h('div', { id: 'content' }, this.$slots.default()) // slot默认default
+            h('div', { id: 'content' }, this.$slots.default()), // slot默认default
+            [1, 2, 3, 4].map(item => h('h' + item, {}, item))
         ])
     }
 };
