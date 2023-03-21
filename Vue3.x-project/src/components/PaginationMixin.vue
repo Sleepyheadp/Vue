@@ -1,7 +1,7 @@
 <template>
     <div>
         <p>当前页：{{ currentPage }}</p>
-        <a v-for="n in totalPage" @click.prevent="changePage(n)">
+        <a v-for="(n, index) in totalPage" :key="index" @click.prevent="changePage(n)">
             {{ n }}
         </a>
     </div>
