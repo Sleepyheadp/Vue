@@ -11,6 +11,11 @@ import PaginationMixin from "../mixins/PaginationMixin";
 
 export default {
     mixins: [PaginationMixin],
+    data() {
+        return {
+            currentPage: 1
+        }
+    }
 };
 </script>
 <style scoped>
