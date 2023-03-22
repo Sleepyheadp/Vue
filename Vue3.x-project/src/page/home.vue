@@ -79,6 +79,10 @@
         <PaginationMixin2 :totalPage="totalPage" :defaultCurrentPage="currentPage" showTotal="true"></PaginationMixin2>
         <!-- 全局mixins使用 -->
         {{ siteTitle }}
+        <!-- async component -->
+        <a href="#" @click.prevent="currentPlace = 'HomePage'">首页</a>
+        <a href="#" @click.prevent="currentPlace = 'ProductPage'">产品页</a>
+        <component :is="currentPlace" />
     </div>
 </template>
 <script>
@@ -101,8 +105,15 @@ import TeleportBox from '../components/TeleportBox.vue'
 import BaseCard from '../components/BaseCard.vue'
 import PaginationMixin from '../components/PaginationMixin.vue'
 import PaginationMixin2 from '../components/PaginationMixin2.vue'
+import HomePage from '../components/asyncComponent/HomePage.vue'
+import ProductPage from '../components/asyncComponent/ProductPage.vue'
+// 使用ES6的异步加载方法引入组件
+// import { defineAsyncComponent } from 'vue'
+// const ProductPage = defineAsyncComponent(() => {
+//     import('../components/asyncComponent/ProductPage.vue')
+// })
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox, BaseCard, PaginationMixin, PaginationMixin2 },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox, BaseCard, PaginationMixin, PaginationMixin2, HomePage, ProductPage },
     data() {
         return {
             count: 0,
@@ -112,6 +123,7 @@ export default {
             category: 'default',
             currentForm: 'RegisterForm',
             msgs: [],// 添加的消息
+            currentPlace: 'HomePage'
         }
     },
     methods: {
@@ -128,6 +140,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.splitLine {
+    width: 100%;
+    height: 2px;
+    color: #ccc;
+}
+
 .title :deep(p) {
     background: hsl(220deg, 100%, 60%);
     font-size: 24px;
