@@ -1,12 +1,12 @@
 <template>
   <ul>
-    <AppListItem v-for="(item, index) in globalError" :key="index">{{ item }}</AppListItem>
+    <AppListItem v-for="(item, index) in number" :key="index">{{ item }}</AppListItem>
   </ul>
 </template>
 <script>
 import AppListItem from "./AppListItem.vue";
 export default {
-  props: ["globalError"],
+  props: ["number"],
   components: {
     AppListItem,
   },

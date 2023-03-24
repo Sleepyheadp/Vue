@@ -84,7 +84,7 @@
         <a href="#" @click.prevent="currentPlace = 'ProductPage'">产品页</a>
         <component :is="currentPlace" />
         <!-- 全局错误处理 -->
-        <AppList :number="number"></AppList>
+        <AppList :globalError="globalError"></AppList>
     </div>
 </template>
 <script>
@@ -127,7 +127,7 @@ export default {
             currentForm: 'RegisterForm',
             msgs: [],// 添加的消息
             currentPlace: 'HomePage',
-            number: [1, 2, 3]
+            globalError: ['ge1', 'ge2', 'ge3']
         }
     },
     methods: {
