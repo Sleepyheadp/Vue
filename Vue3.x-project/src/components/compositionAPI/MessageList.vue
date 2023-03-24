@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
 export default {
     setup() {
         const messages = ref([
@@ -40,6 +40,14 @@ export default {
                 return msg.content.includes(searchTerm.value)
             })
 
+        })
+        // 直接监听ref
+        // watch(searchTerm, (newVal, oldVal) => {
+        //     console.log('搜索词：', newVal, oldVal);
+        // })
+        // 监听ref的value属性
+        watch(() => searchTerm.value, (newVal, oldVal) => {
+            console.log('搜索词：', newVal, oldVal);
         })
         return { messages, options, searchTerm, searchedMessages };
     },
