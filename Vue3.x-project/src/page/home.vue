@@ -109,7 +109,7 @@ import PaginationMixin from '../components/PaginationMixin.vue'
 import PaginationMixin2 from '../components/PaginationMixin2.vue'
 import HomePage from '../components/asyncComponent/HomePage.vue'
 import ProductPage from '../components/asyncComponent/ProductPage.vue'
-import AppList from '../components/AppList.vue'
+import AppList from '../components/globalError/AppList.vue'
 // 使用ES6的异步加载方法引入组件
 // import { defineAsyncComponent } from 'vue'
 // const ProductPage = defineAsyncComponent(() => {
