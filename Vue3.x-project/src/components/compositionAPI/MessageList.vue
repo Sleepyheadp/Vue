@@ -16,6 +16,8 @@ export default {
             { id: 3, content: "这是一条消息提醒3" },
             { id: 4, content: "这是一条消息提醒4" },
         ]);
+        // 在setup中访问需要通过value属性，模版语法中则直接取值就可以。
+        console.log(messages.value)
         return { messages };
     },
 };
