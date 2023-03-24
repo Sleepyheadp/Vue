@@ -1,8 +1,8 @@
 <template>
     <div>
         <p>当前页：{{ currentPage }}</p>
-        <a v-for="(n, index) in totalPage" :key="index" @click.prevent="changePage(n)">
-            {{ n }}
+        <a v-for="(item, index) in totalPage" :key="index" @click.prevent="changePage(n)">
+            {{ item }}
         </a>
     </div>
 </template>
