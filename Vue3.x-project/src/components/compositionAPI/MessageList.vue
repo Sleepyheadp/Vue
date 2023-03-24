@@ -1,9 +1,11 @@
 <template>
     <div>
         <h2>标题：{{ options.title }}</h2>
-        <P>用户:{{ options.user.name }}，活跃：{{ options.user.active ? "是" : "否" }}</P>
+        <div>用户:{{ options.user.name }}</div>
+        <div>活跃：{{ options.user.active ? "是" : "否" }}</div>
+        <input type="text" v-model="searchTerm">
         <ul>
-            <li v-for="msg in messages" :key="msg.id">{{ msg.content }}</li>
+            <li v-for="msg in searchedMessages" :key="msg.id">{{ msg.content }}</li>
         </ul>
         <button @click="messages = []">删除全部</button>
         <button @click="options.title = '我是标题'">修改标题</button>
@@ -11,7 +13,7 @@
     </div>
 </template>
 <script>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 export default {
     setup() {
         const messages = ref([
@@ -30,7 +32,16 @@ export default {
         // 在setup中访问需要通过value属性，模版语法中则直接取值就可以。
         console.log('ref.value:', messages.value)
         console.log('reactive', options.title);
-        return { messages, options };
+        // computed计算属性
+        const searchTerm = ref('')
+        const searchedMessages = computed(() => {
+            if (searchTerm.value === '') return ''
+            return messages.value.filter((msg) => {
+                return msg.content.includes(searchTerm.value)
+            })
+
+        })
+        return { messages, options, searchTerm, searchedMessages };
     },
 };
 </script>
