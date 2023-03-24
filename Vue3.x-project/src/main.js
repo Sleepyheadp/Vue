@@ -34,6 +34,7 @@ app.mixin({
 });
 // 全局处理异常
 app.config.errorHandler = (err, vm, info) => {
+	// err：错误信息 vm：vue实例 info：错误地点
 	console.log(err);
 	console.log(vm);
 	console.log(info);
