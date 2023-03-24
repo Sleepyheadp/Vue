@@ -3,6 +3,7 @@
         <h2>标题：{{ options.title }}</h2>
         <div>用户:{{ options.user.name }}</div>
         <div>活跃：{{ options.user.active ? "是" : "否" }}</div>
+        <div>年龄：{{ refInfo.age }}</div>
         <input type="text" v-model="searchTerm">
         <ul>
             <li v-for="msg in searchedMessages" :key="msg.id">{{ msg.content }}</li>
@@ -10,6 +11,7 @@
         <button @click="messages = []">删除全部</button>
         <button @click="options.title = '我是标题'">修改标题</button>
         <button @click="options.user.name = '李四'">修改用户</button>
+        <button @click="refInfo.age = 18">修改年龄</button>
     </div>
 </template>
 <script>
@@ -28,6 +30,9 @@ export default {
                 name: '张三',
                 active: true
             }
+        })
+        const refInfo = ref({
+            age: 25
         })
         // 在setup中访问需要通过value属性，模版语法中则直接取值就可以。
         console.log('ref.value:', messages.value)
@@ -49,7 +54,13 @@ export default {
         watch(() => searchTerm.value, (newVal, oldVal) => {
             console.log('搜索词：', newVal, oldVal);
         })
-        return { messages, options, searchTerm, searchedMessages };
+        watch(() => options.title, (newVal, oldVal) => {
+            console.log('options.title:', newVal, oldVal);
+        })
+        watch(() => refInfo.value.age, (newVal, oldVal) => {
+            console.log('refinfo.value.age', newVal, oldVal);
+        })
+        return { messages, refInfo, options, searchTerm, searchedMessages };
     },
 };
 </script>
