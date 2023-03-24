@@ -32,6 +32,11 @@ app.mixin({
 		},
 	},
 });
-
+// 全局处理异常
+app.config.errorHandler = (err, vm, info) => {
+	console.log(err);
+	console.log(vm);
+	console.log(info);
+};
 app.mount("#app");
 // createApp(App).mount("#app");

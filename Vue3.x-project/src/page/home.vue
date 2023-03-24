@@ -83,6 +83,8 @@
         <a href="#" @click.prevent="currentPlace = 'HomePage'">首页</a>
         <a href="#" @click.prevent="currentPlace = 'ProductPage'">产品页</a>
         <component :is="currentPlace" />
+        <!-- 全局错误处理 -->
+        <AppList :number="number"></AppList>
     </div>
 </template>
 <script>
@@ -107,13 +109,14 @@ import PaginationMixin from '../components/PaginationMixin.vue'
 import PaginationMixin2 from '../components/PaginationMixin2.vue'
 import HomePage from '../components/asyncComponent/HomePage.vue'
 import ProductPage from '../components/asyncComponent/ProductPage.vue'
+import AppList from '../components/AppList.vue'
 // 使用ES6的异步加载方法引入组件
 // import { defineAsyncComponent } from 'vue'
 // const ProductPage = defineAsyncComponent(() => {
 //     import('../components/asyncComponent/ProductPage.vue')
 // })
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox, BaseCard, PaginationMixin, PaginationMixin2, HomePage, ProductPage },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox, BaseCard, PaginationMixin, PaginationMixin2, HomePage, ProductPage, AppList },
     data() {
         return {
             count: 0,
@@ -123,7 +126,8 @@ export default {
             category: 'default',
             currentForm: 'RegisterForm',
             msgs: [],// 添加的消息
-            currentPlace: 'HomePage'
+            currentPlace: 'HomePage',
+            number: [1, 2, 3]
         }
     },
     methods: {
