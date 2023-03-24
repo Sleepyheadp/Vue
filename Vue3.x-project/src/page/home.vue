@@ -84,7 +84,15 @@
         <a href="#" @click.prevent="currentPlace = 'ProductPage'">产品页</a>
         <component :is="currentPlace" />
         <!-- 全局错误处理 -->
-        <AppList :globalError="globalError"></AppList>
+        <AppListGlobalError :globalError="globalError"></AppListGlobalError>
+        <!-- 组件内错误处理 -->
+        <p v-if="errorComp">我是顶部的错误信息（根组件</p>
+        <template v-else>
+            <div>
+                <AppButton></AppButton>
+                <AppListComponentError :componentError="componentError"></AppListComponentError>
+            </div>
+        </template>
     </div>
 </template>
 <script>
@@ -109,14 +117,16 @@ import PaginationMixin from '../components/PaginationMixin.vue'
 import PaginationMixin2 from '../components/PaginationMixin2.vue'
 import HomePage from '../components/asyncComponent/HomePage.vue'
 import ProductPage from '../components/asyncComponent/ProductPage.vue'
-import AppList from '../components/globalError/AppList.vue'
+import AppListGlobalError from '../components/globalError/AppList.vue'
+import AppListComponentError from '../components/componentError/AppList.vue'
+import AppButton from '../components/componentError/AppButton.vue'
 // 使用ES6的异步加载方法引入组件
 // import { defineAsyncComponent } from 'vue'
 // const ProductPage = defineAsyncComponent(() => {
 //     import('../components/asyncComponent/ProductPage.vue')
 // })
 export default {
-    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox, BaseCard, PaginationMixin, PaginationMixin2, HomePage, ProductPage, AppList },
+    components: { HelloWorld, sonToFather, addMoreWatch, movieCard, slotSonAttr, cssModule, deepStyle, slottedStyle, dynamicStyle, searchInput, autoFoucs, customDirective, TextHeading, ProfileForm, RegisterForm, TeleportBox, BaseCard, PaginationMixin, PaginationMixin2, HomePage, ProductPage, AppListGlobalError, AppListComponentError, AppButton },
     data() {
         return {
             count: 0,
@@ -127,7 +137,9 @@ export default {
             currentForm: 'RegisterForm',
             msgs: [],// 添加的消息
             currentPlace: 'HomePage',
-            globalError: ['ge1', 'ge2', 'ge3']
+            globalError: ['ge1', 'ge2', 'ge3'],
+            componentError: ['ce1', 'ce2', 'ce3'],
+            errorComp: false
         }
     },
     methods: {
@@ -140,7 +152,11 @@ export default {
             console.log(this.$refs.autofocus.inputText);
             this.$refs.autofocus.inputBlur()
         }, 5000);
-    }
+    },
+    errorCaptured(err, vm, info) {
+        this.errorComp = true;
+        return false
+    },
 }
 </script>
 <style lang="scss" scoped>

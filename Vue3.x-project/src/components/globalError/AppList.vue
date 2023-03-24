@@ -12,7 +12,7 @@ export default {
   },
   mounted() {
     // 主动抛出异常
-    throw new Error('发生了异常')
+    // throw new Error('globalError-发生了异常')
   },
 };
 </script>

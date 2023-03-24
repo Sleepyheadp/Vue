@@ -1,7 +1,13 @@
 <template>
-  <li><slot></slot></li>
+  <li>
+    <slot></slot>
+  </li>
 </template>
 <script>
-export default {};
+export default {
+  mounted() {
+    // throw Error('componentError-报错了')
+  }
+};
 </script>
 <style scoped></style>

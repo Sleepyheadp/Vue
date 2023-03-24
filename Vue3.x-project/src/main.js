@@ -33,11 +33,11 @@ app.mixin({
 	},
 });
 // 全局处理异常 捕获AppList.vue中的错误
-app.config.errorHandler = (err, vm, info) => {
-	// err：错误信息 vm：vue实例 info：错误地点
-	console.log(err);
-	console.log(vm);
-	console.log(info);
-};
+// app.config.errorHandler = (err, vm, info) => {
+// 	// err：错误信息 vm：vue实例 info：错误地点
+// 	console.log(err);
+// 	console.log(vm);
+// 	console.log(info);
+// };
 app.mount("#app");
 // createApp(App).mount("#app");
