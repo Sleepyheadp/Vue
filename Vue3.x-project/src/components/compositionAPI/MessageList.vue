@@ -1,7 +1,10 @@
 <template>
-    <ul>
-        <li v-for="msg in messages" :key="msg.id">{{ msg.content }}</li>
-    </ul>
+    <div>
+        <ul>
+            <li v-for="msg in messages" :key="msg.id">{{ msg.content }}</li>
+        </ul>
+        <button @click="messages = []">删除全部</button>
+    </div>
 </template>
 <script>
 export default {
@@ -12,16 +15,14 @@ export default {
             { id: 3, content: "这是一条消息提醒3" },
             { id: 4, content: "这是一条消息提醒4" },
         ];
-
         return { messages };
     },
 };
 </script>
 <style scoped>
-h2 {
-    color: hsl(280deg, 100%, 70%);
-    margin-bottom: 24px;
-    text-align: center;
+div {
+    display: grid;
+    place-items: center;
 }
 
 ul {
