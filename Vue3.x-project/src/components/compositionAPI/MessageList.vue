@@ -21,7 +21,9 @@
 <script>
 import { ref, reactive, computed, watch, watchEffect } from 'vue'
 export default {
-    setup() {
+    props: ['compositionApiProps'],
+    setup(props) {
+        console.log('compositionApiProps：', props.compositionApiProps);
         const messages = ref([
             { id: 1, content: "这是一条消息提醒1" },
             { id: 2, content: "这是一条消息提醒2" },

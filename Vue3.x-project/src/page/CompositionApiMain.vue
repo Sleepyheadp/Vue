@@ -1,13 +1,17 @@
 <template>
     <div>
-        <MessageList></MessageList>
+        <MessageList :compositionApiProps="compositionApiProps"></MessageList>
     </div>
 </template>
 <script>
 import MessageList from '../components/compositionAPI/MessageList.vue'
+import { ref } from 'vue'
 export default {
     components: { MessageList },
-    setup() { }
+    setup() {
+        const compositionApiProps = ref('props-father')
+        return { compositionApiProps }
+    }
 }
 </script>
 <style lang="">
