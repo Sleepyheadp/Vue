@@ -14,12 +14,12 @@
         <button @click="options.title = '我是标题'">修改标题</button>
         <button @click="options.user.name = '李四'">修改用户</button>
         <button @click="refInfo.info = '修改了个人信息...'">修改个人信息</button>
-        <button @click="refInfo.user.age = 18">修改年龄</button>
+        <button @click="refInfo.user.age = 25">修改年龄</button>
         <button @click="refInfo.user.sex = '女'">修改性别</button>
     </div>
 </template>
 <script>
-import { ref, reactive, computed, watch } from 'vue'
+import { ref, reactive, computed, watch, watchEffect } from 'vue'
 export default {
     setup() {
         const messages = ref([
@@ -38,13 +38,13 @@ export default {
         const refInfo = ref({
             info: 'info...',
             user: {
-                age: 25,
+                age: 18,
                 sex: '男'
             }
         })
         // 在setup中访问需要通过value属性，模版语法中则直接取值就可以。
-        console.log('ref.value:', messages.value)
-        console.log('reactive', options.title);
+        // console.log('ref.value:', messages.value)
+        // console.log('reactive', options.title);
         // computed计算属性
         const searchTerm = ref('')
         const searchedMessages = computed(() => {
@@ -54,28 +54,43 @@ export default {
             })
 
         })
-        // 直接监听ref
+        // 直接监听ref(监听不到对象中属性的变化，也获取不到新值X)
         // watch(searchTerm, (newVal, oldVal) => {
         //     console.log('搜索词：', newVal, oldVal);
         // })
         // 监听ref的value属性
-        watch(() => searchTerm.value, (newVal, oldVal) => {
+        // onInvalidate()在第一次监听的数据发生变化时不会执行，而是在第二次变化时执行一次
+        watch(() => searchTerm.value, (newVal, oldVal, onInvalidate) => {
             console.log('搜索词：', newVal, oldVal);
+            onInvalidate(() => {
+                console.log('watch-做一些清理操作');
+            })
         })
+        // 监听reactive响应性数据
         watch(() => options.title, (newVal, oldVal) => {
             console.log('options.title:', newVal, oldVal);
         })
+        // 改为深拷贝的形式，可以监听到ref响应性数据中对象属性的变化。
+        // 也可以使用第三方插件
         watch(
-            // 改为深拷贝的形式，可以监听到ref响应性数据中对象属性的变化。
-            // 也可以使用第三方插件
             () => JSON.parse(JSON.stringify(refInfo.value)),
             (newVal, oldVal) => {
-                console.log('refInfo.value.user', newVal, oldVal, newVal === oldVal);
+                // console.log('refInfo.value.user', newVal, oldVal, newVal === oldVal);
             },
         )
-        // watch(() => refInfo.value, (newVal, oldVal) => {
-        //     console.log('refInfo.value.sex', newVal, oldVal);
-        // })
+        // watch监听多个数据
+        watch([() => refInfo.value.info, () => refInfo.value.user.age, () => refInfo.value.user.sex], (newVal, oldVal) => {
+            console.log('refInfo.value.multiple', newVal, oldVal);
+        })
+        watchEffect((onValidate) => {
+            // 页面加载完之后就会执行一次
+            console.log(refInfo.value.info);
+            console.log(refInfo.value.user.age);
+            console.log(refInfo.value.user.sex);
+            onValidate(() => {
+                console.log('watchEffect-做一些清理操作...');
+            })
+        })
         return { messages, refInfo, options, searchTerm, searchedMessages };
     },
 };
