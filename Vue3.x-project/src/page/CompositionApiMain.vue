@@ -8,7 +8,7 @@ import MessageList from '../components/compositionAPI/MessageList.vue'
 import { ref } from 'vue'
 export default {
     components: { MessageList },
-    setup() {
+    setup(props) {
         const compositionApiProps = ref('props-father')
         return { compositionApiProps }
     }

@@ -16,12 +16,15 @@
         <button @click="refInfo.info = '修改了个人信息...'">修改个人信息</button>
         <button @click="refInfo.user.age = 25">修改年龄</button>
         <button @click="refInfo.user.sex = '女'">修改性别</button>
+        <ToRefsComp v-for="tel in tels" :key="tel.id" :msg="tel.number"></ToRefsComp>
     </div>
 </template>
 <script>
 import { ref, reactive, computed, watch, watchEffect } from 'vue'
+import ToRefsComp from './toRefsComp.vue';
 export default {
-    props: ['compositionApiProps'],
+    props: ['compositionApiProps',],
+    components: { ToRefsComp },
     setup(props) {
         console.log('compositionApiProps：', props.compositionApiProps);
         const messages = ref([
@@ -44,6 +47,14 @@ export default {
                 sex: '男'
             }
         })
+        const tels = ref([
+            { id: 1, number: 110 },
+            { id: 2, number: 120 },
+            { id: 3, number: 119 },
+        ])
+        setTimeout(() => {
+            tels.value[1].number = 114
+        }, 1500);
         // 在setup中访问需要通过value属性，模版语法中则直接取值就可以。
         // console.log('ref.value:', messages.value)
         // console.log('reactive', options.title);
@@ -93,7 +104,7 @@ export default {
                 console.log('watchEffect-做一些清理操作...');
             })
         })
-        return { messages, refInfo, options, searchTerm, searchedMessages };
+        return { messages, refInfo, options, searchTerm, searchedMessages, tels };
     },
 };
 </script>
