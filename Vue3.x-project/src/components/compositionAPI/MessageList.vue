@@ -16,14 +16,15 @@
         <button @click="refInfo.info = '修改了个人信息...'">修改个人信息</button>
         <button @click="refInfo.user.age = 25">修改年龄</button>
         <button @click="refInfo.user.sex = '女'">修改性别</button>
-        <ToRefsComp v-for="tel in tels" :key="tel.id" :msg="tel.number"></ToRefsComp>
+        <ToRefsComp v-for="tel in tels" :key="tel.id" :msg="tel.number" :propsArr="propsArr"></ToRefsComp>
+        <button @click="propsArr.pop()">删除role</button>
     </div>
 </template>
 <script>
 import { ref, reactive, computed, watch, watchEffect } from 'vue'
 import ToRefsComp from './toRefsComp.vue';
 export default {
-    props: ['compositionApiProps',],
+    props: ['compositionApiProps'],
     components: { ToRefsComp },
     setup(props) {
         console.log('compositionApiProps：', props.compositionApiProps);
@@ -51,6 +52,10 @@ export default {
             { id: 1, number: 110 },
             { id: 2, number: 120 },
             { id: 3, number: 119 },
+        ])
+        const propsArr = ref([
+            { id: 1, role: 'Tom' },
+            { id: 2, role: 'Jerry' }
         ])
         setTimeout(() => {
             tels.value[1].number = 114
@@ -104,7 +109,7 @@ export default {
                 console.log('watchEffect-做一些清理操作...');
             })
         })
-        return { messages, refInfo, options, searchTerm, searchedMessages, tels };
+        return { messages, refInfo, options, searchTerm, searchedMessages, tels, propsArr };
     },
 };
 </script>

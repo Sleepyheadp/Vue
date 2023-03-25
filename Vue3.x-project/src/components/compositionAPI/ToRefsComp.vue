@@ -1,11 +1,14 @@
 <template>
-    <li>{{ msg }}</li>
+    <div>
+        <li>{{ msg }}</li>
+        <p v-for="item in propsArr" :key="item.id">{{ item.role }}</p>
+    </div>
 </template>
 <script>
 import { watch, toRefs } from "vue";
 
 export default {
-    props: ["msg"],
+    props: ["msg", 'propsArr'],
     setup(props) {
         // toRefs使用：将静态数据转换为ref响应性数据
         // 为什么监听不到呢？因为message为数组类型，并没有监听具体的值，props.tels[1].number 就可以监听到。
@@ -16,10 +19,16 @@ export default {
         //         console.log('toRefs:', newVal, oldVal);
         //     }
         // )
+        console.log('props.propsArr', props.propsArr)
         const { msg } = toRefs(props);
         watch(msg, (newVal) => {
             console.log('toRefs', newVal);
         });
+        watch(props.propsArr, (newVal) => {
+            console.log(newVal.length)
+        }, {
+            deep: true
+        })
         return {};
     },
 };
