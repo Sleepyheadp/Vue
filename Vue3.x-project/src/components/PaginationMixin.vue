@@ -17,7 +17,7 @@ export default {
         }
     },
     mounted() {
-        console.log('组件中的钩子函数...');
+        // console.log('组件中的钩子函数...');
     },
 };
 </script>
