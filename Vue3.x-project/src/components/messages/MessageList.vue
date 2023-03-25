@@ -1,31 +1,30 @@
 <template>
   <div>
     <ul>
-      <MessageListItem v-for="msg in messages" :key="msg.id" :msg="msg.content" :id="msg.id"></MessageListItem>
+      <MessageListItem v-for="msg in messages" :key="msg.id" :msg="msg.content" :id="msg.id" @remove="removeMessage">
+      </MessageListItem>
     </ul>
   </div>
 </template>
 <script>
-import { ref, watch, watchEffect } from "vue";
+import { ref } from "vue";
 import MessageListItem from "./MessageListItem.vue";
 export default {
-  props: ["messages"],
-  setup(props) {
-    // 这里 messages 是 ref 中的 value
-    // const { messages } = props;
-    watch(
-      () => props.messages,
-      // () => messages,
-      (newMessages) => {
-        console.log(newMessages.length);
-      },
-      {
-        deep: true,
-      }
-    );
-    return {};
-  },
   components: { MessageListItem },
+  setup(props) {
+    const messages = ref([
+      { id: 1, content: "这是一条消息提醒1" },
+      { id: 2, content: "这是一条消息提醒2" },
+      { id: 3, content: "这是一条消息提醒3" },
+      { id: 4, content: "这是一条消息提醒4" },
+    ]);
+    // emits
+    function removeMessage(id) {
+      // 当点击的id和messages的id相等时，则删除，不想等满足filter条件，则保留
+      messages.value = messages.value.filter((msg) => msg.id !== id)
+    }
+    return { removeMessage, messages };
+  },
 };
 </script>
 <style scoped>

@@ -1,16 +1,15 @@
 <template>
-  <li>{{ msg }}<button @click="removeMessage(id)">删除</button></li>
+  <li>{{ msg }}<button @click="$emit('remove', id)">删除</button></li>
 </template>
 <script>
-import { ref, watch, watchEffect } from "vue";
-
 export default {
   props: ["msg", 'id'],
+  emits: ['remove'],
   setup() {
-    function removeMessage(id) {
-      console.log('删除消息', id);
-    }
-    return { removeMessage }
+    // function removeMessage(id) {
+    //   console.log('删除消息', id);
+    // }
+    // return { removeMessage }
   }
 };
 </script>
