@@ -13,7 +13,7 @@ const PaginationMixin = {
 	mounted() {
 		// 组件引用Mixins的时候，Mixins中的钩子函数会先执行
 		// 这里打印了两次，是因为两个组件都引用了PaginationMixins.js
-		console.log("Mixins钩子函数...");
+		// console.log("Mixins钩子函数...");
 	},
 };
 export default PaginationMixin;
