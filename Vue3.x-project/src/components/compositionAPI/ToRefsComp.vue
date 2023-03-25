@@ -1,6 +1,9 @@
 <template>
     <div>
-        <li>{{ msg }}</li>
+        <li>
+            {{ msg }}-{{ id }}
+            <button @click="removeMessage(id)">删除</button>
+        </li>
         <p v-for="item in propsArr" :key="item.id">{{ item.role }}</p>
     </div>
 </template>
@@ -8,7 +11,7 @@
 import { watch, toRefs } from "vue";
 
 export default {
-    props: ["msg", 'propsArr'],
+    props: ["msg", 'propsArr', 'id'],
     setup(props) {
         // toRefs使用：将静态数据转换为ref响应性数据
         // 为什么监听不到呢？因为message为数组类型，并没有监听具体的值，props.tels[1].number 就可以监听到。
@@ -29,7 +32,10 @@ export default {
         }, {
             deep: true
         })
-        return {};
+        function removeMessage(id) {
+            console.log('删除消息', id)
+        }
+        return { removeMessage };
     },
 };
 </script>

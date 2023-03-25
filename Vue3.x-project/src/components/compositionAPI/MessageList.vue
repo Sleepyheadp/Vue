@@ -16,7 +16,7 @@
         <button @click="refInfo.info = '修改了个人信息...'">修改个人信息</button>
         <button @click="refInfo.user.age = 25">修改年龄</button>
         <button @click="refInfo.user.sex = '女'">修改性别</button>
-        <ToRefsComp v-for="tel in tels" :key="tel.id" :msg="tel.number" :propsArr="propsArr"></ToRefsComp>
+        <ToRefsComp v-for="tel in tels" :key="tel.id" :id='tel.id' :msg="tel.number" :propsArr="propsArr"></ToRefsComp>
         <button @click="propsArr.pop()">删除role</button>
     </div>
 </template>
