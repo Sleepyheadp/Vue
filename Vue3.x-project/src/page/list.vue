@@ -14,15 +14,17 @@
             </template>
         </BaseLayout>
         <ComposablesMessageList></ComposablesMessageList>
+        <UserTable></UserTable>
     </div>
 </template>
 <script>
 import MessageList from '../components/messages/MessageList.vue'
 import BaseLayout from '../components/BaseLayout.vue'
 import ComposablesMessageList from '../components/composables/MessageList.vue'
+import UserTable from '../components/composables/UserTable.vue'
 import { ref } from 'vue'
 export default {
-    components: { MessageList, BaseLayout, ComposablesMessageList },
+    components: { MessageList, BaseLayout, ComposablesMessageList, UserTable },
     setup() {
         const test = ref('test')
         setTimeout(() => {
