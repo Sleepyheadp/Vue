@@ -1,29 +1,38 @@
 <template>
   <div>
-    <ul>
+    <div v-if="loading">loading...</div>
+    <ul v-else>
       <MessageListItem v-for="msg in messages" :key="msg.id" :msg="msg.content" :id="msg.id" @remove="removeMessage">
       </MessageListItem>
     </ul>
   </div>
 </template>
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import MessageListItem from "./MessageListItem.vue";
 export default {
   components: { MessageListItem },
   setup(props) {
-    const messages = ref([
-      { id: 1, content: "这是一条消息提醒1" },
-      { id: 2, content: "这是一条消息提醒2" },
-      { id: 3, content: "这是一条消息提醒3" },
-      { id: 4, content: "这是一条消息提醒4" },
-    ]);
+    const messages = ref([]);
+    const loading = ref(false);
+    onMounted(() => {
+      loading.value = true;
+      setTimeout(() => {
+        messages.value = [
+          { id: 1, content: "这是一条消息提醒1" },
+          { id: 2, content: "这是一条消息提醒2" },
+          { id: 3, content: "这是一条消息提醒3" },
+          { id: 4, content: "这是一条消息提醒4" },
+        ]
+        loading.value = false
+      }, 2000);
+    })
     // emits
     function removeMessage(id) {
       // 当点击的id和messages的id相等时，则删除，不想等满足filter条件，则保留
       messages.value = messages.value.filter((msg) => msg.id !== id)
     }
-    return { removeMessage, messages };
+    return { removeMessage, messages, loading };
   },
 };
 </script>
