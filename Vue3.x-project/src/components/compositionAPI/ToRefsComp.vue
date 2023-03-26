@@ -22,7 +22,7 @@ export default {
         //         console.log('toRefs:', newVal, oldVal);
         //     }
         // )
-        console.log('props.propsArr', props.propsArr)
+        // console.log('props.propsArr', props.propsArr)
         const { msg } = toRefs(props);
         watch(msg, (newVal) => {
             console.log('toRefs', newVal);

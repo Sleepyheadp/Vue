@@ -1,8 +1,8 @@
 <template>
   <!-- vue2.x要求template模版中必须有一个根元素 -->
   <div id="root">
-    <!-- <Home></Home> -->
-    <!-- <CompositionApiMain></CompositionApiMain> -->
+    <Home></Home>
+    <CompositionApiMain></CompositionApiMain>
     <List></List>
   </div>
 </template>
