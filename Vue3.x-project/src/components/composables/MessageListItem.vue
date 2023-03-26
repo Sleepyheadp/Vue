@@ -4,17 +4,12 @@
     <button @click="$emit('remove', id)">删除</button>
   </li>
 </template>
-<script>
+<script setup>
 import { ref, watch, watchEffect, toRefs } from "vue";
-
-export default {
-  props: ["msg", 'id'],
-  emits: ['remove'],
-  setup(props) {
-
-    return {};
-  },
-};
+//props: ["msg", 'id'],
+//emits: ['remove'],
+const props = defineProps(['msg', 'id'])
+const emits = defineEmits(["remove"])
 </script>
 <style scoped>
 li {
