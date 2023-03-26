@@ -1,6 +1,6 @@
 <template>
     <div>
-        <MessageList :test="test"></MessageList>
+        <MessageList class="messageList" data-title="消息列表" :test="test"></MessageList>
         <BaseLayout>
             <template v-slot:header>
                 <nav>
