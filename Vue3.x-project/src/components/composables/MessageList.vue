@@ -13,7 +13,14 @@ import useListData from '../../composables/useListData'
 export default {
   components: { MessageListItem },
   setup(props, { attrs }) {
-    const { messages, removeMessage } = useListData()
+    const { data: messages, removeItem: removeMessage } = useListData(
+      [
+        { id: 1, content: "这是一个bug1" },
+        { id: 2, content: "这是一个bug2" },
+        { id: 3, content: "这是一个bug3" },
+        { id: 4, content: "这是一个bug4" },
+      ]
+    )
     return { messages, removeMessage };
   },
 };
