@@ -2,16 +2,26 @@
     <input type="text" v-model="inputText" ref="inputControl" />
 </template>  
 <script>
+import { ref, onMounted } from 'vue'
 export default {
-    data() {
-        return {
-            inputText: ''
-        }
+    // data() {
+    //     return {
+    //         inputText: ''
+    //     }
+    // },
+    setup() {
+        const inputText = ref('')
+        const inputControl = ref(null)
+        onMounted(() => {
+            inputControl.value.focus()
+        })
+        return { inputText, inputControl }
     },
-    mounted() {
-        // 页面加载完后自动获取焦点
-        this.$refs.inputControl.focus()
-    },
+    //vue2.x
+    // mounted() {
+    //     // 页面加载完后自动获取焦点
+    //     this.$refs.inputControl.focus()
+    // },
     methods: {
         // 子组件的方法
         inputBlur() {

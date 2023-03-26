@@ -42,7 +42,7 @@
         <p>搜索词：{{ searchTerm }}</p>
         <p>类别：{{ category }}</p>
         <!-- refs:通过调用子组件的方法 -->
-        <span>ref：</span>
+        <span>自动获取焦点，ref：</span>
         <autoFoucs ref="autofocus"></autoFoucs>
         <!-- 自定义指令 -->
         <customDirective></customDirective>
