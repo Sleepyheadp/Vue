@@ -5,7 +5,7 @@
 </template>
 <script>
 import MovieItem from "./MovieItem.vue";
-import { provide } from 'vue'
+import { ref, provide, toRef } from 'vue'
 export default {
   components: {
     MovieItem,
@@ -24,11 +24,20 @@ export default {
   // },
   // 定义向下传递的数据 vue3.x
   setup() {
-    const movie = {
+    const movie = ref({
       title: '电影-inject直接获取',
       description: '这是一段电影的描述-vue3.x-setup'
-    }
-    provide("title", movie.title)
+    })
+    // 有响应性
+    // provide('movie', movie)
+    // 没有响应性，因为movie.title 是字符串类型
+    // provide("title", movie.title)
+    // 具有响应性
+    provide('title', toRef(movie.value, "title"))
+
+    setTimeout(() => {
+      movie.value.title = '电影-修改'
+    }, 2000)
     return { movie }
   }
 };

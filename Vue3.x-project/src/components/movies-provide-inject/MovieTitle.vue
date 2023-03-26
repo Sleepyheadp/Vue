@@ -1,5 +1,8 @@
 <template>
-  <h2>{{ title }}</h2>
+  <div>
+    <h2>{{ title }}</h2>
+    <!-- <h2>{{ movie.title }}</h2> -->
+  </div>
 </template>
 <script>
 import { inject } from 'vue'
@@ -8,6 +11,9 @@ export default {
   // inject: ['title']
   setup() {
     // inject 第二个参数为默认值
+    // const title = inject('title')
+    // return { title }
+
     const title = inject('title')
     return { title }
   }

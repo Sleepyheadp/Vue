@@ -26,7 +26,7 @@
         <addMoreWatch :totalPage="totalPage" :currentPageProps="currentPage"></addMoreWatch>
         <button @click="totalPage += 1">增加页数</button>
         <!-- props的高级版 => provide/inject的使用 -->
-        <movieCard></movieCard>
+        电影描述：<movieCard></movieCard>
         <!-- css modules -->
         <cssModule></cssModule>
         <!-- :deep的用法 -->
