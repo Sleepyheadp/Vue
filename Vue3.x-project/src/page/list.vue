@@ -1,6 +1,6 @@
 <template>
     <div>
-        <MessageList></MessageList>
+        <MessageList :test="test"></MessageList>
         <BaseLayout>
             <template v-slot:header>
                 <nav>
@@ -18,9 +18,15 @@
 <script>
 import MessageList from '../components/messages/MessageList.vue'
 import BaseLayout from '../components/BaseLayout.vue'
+import { ref } from 'vue'
 export default {
     components: { MessageList, BaseLayout },
     setup() {
+        const test = ref('test')
+        setTimeout(() => {
+            test.value = 'test changed'
+        }, 2000);
+        return { test }
     }
 }
 </script>
