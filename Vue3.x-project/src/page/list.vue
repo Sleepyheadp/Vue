@@ -13,14 +13,16 @@
                 <p>这是内容</p>
             </template>
         </BaseLayout>
+        <ComposablesMessageList></ComposablesMessageList>
     </div>
 </template>
 <script>
 import MessageList from '../components/messages/MessageList.vue'
 import BaseLayout from '../components/BaseLayout.vue'
+import ComposablesMessageList from '../components/composables/MessageList.vue'
 import { ref } from 'vue'
 export default {
-    components: { MessageList, BaseLayout },
+    components: { MessageList, BaseLayout, ComposablesMessageList },
     setup() {
         const test = ref('test')
         setTimeout(() => {
