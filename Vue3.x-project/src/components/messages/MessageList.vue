@@ -2,7 +2,7 @@
   <div>
     <div v-if="loading">loading...</div>
     <ul v-else>
-      {{ $attrs.test }}
+      {{ this.$attrs.test }}
       <MessageListItem v-for="msg in messages" :key="msg.id" :msg="msg.content" :id="msg.id" @remove="removeMessage">
       </MessageListItem>
     </ul>
