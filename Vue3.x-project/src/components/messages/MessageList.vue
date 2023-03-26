@@ -24,26 +24,26 @@ export default {
           { id: 2, content: "这是一条消息提醒2" },
           { id: 3, content: "这是一条消息提醒3" },
           { id: 4, content: "这是一条消息提醒4" },
-        ]
-        loading.value = false
+        ];
+        loading.value = false;
       }, 2000);
-    })
+    });
     // emits
     function removeMessage(id) {
       // 当点击的id和messages的id相等时，则删除，不想等满足filter条件，则保留
-      messages.value = messages.value.filter((msg) => msg.id !== id)
+      messages.value = messages.value.filter((msg) => msg.id !== id);
     }
     // attrs
-    console.log('attrs:', attrs);
-    console.log('attrs.test', attrs.test);
-    console.log('attrs.class', attrs.class);
-    console.log('attrs[data-title]', attrs['data-title'])
+    console.log("attrs:", attrs);
+    console.log("attrs.test", attrs.test);
+    console.log("attrs.class", attrs.class);
+    console.log("attrs[data-title]", attrs["data-title"]);
     // 解构出来，不再具有响应性
     // const { test } = attrs
     watch(() => {
-      console.log(attrs.test, 'in MessageList');
+      console.log(attrs.test, "in MessageList");
       // console.log(test, 'in MessageList.vue');
-    })
+    });
     return { removeMessage, messages, loading };
   },
 };
