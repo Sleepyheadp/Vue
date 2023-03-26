@@ -1,15 +1,18 @@
 <template>
-  <li>{{ msg }}<button @click="$emit('remove', id)">删除</button></li>
+  <div>
+    <!-- <li>{{ msg }}<button @click="$emit('remove', id)">删除</button></li> -->
+    <li>{{ msg }}<button @click="removeMessage(id)">删除</button></li>
+  </div>
 </template>
 <script>
 export default {
   props: ["msg", 'id'],
   emits: ['remove'],
-  setup() {
-    // function removeMessage(id) {
-    //   console.log('删除消息', id);
-    // }
-    // return { removeMessage }
+  setup(props, { emit }) {
+    function removeMessage(id) {
+      emit('remove', id)
+    }
+    return { removeMessage }
   }
 };
 </script>
