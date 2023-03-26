@@ -1,5 +1,6 @@
 <template>
     <div>
+        <button @click="sortByKey('username', 'desc')">排序</button>
         <table>
             <thead>
                 <th>ID</th>
@@ -30,6 +31,7 @@ export default {
         const {
             data: users,
             removeItem: removeUser,
+            sortByKey,
         } = useListData([
             { id: 1, username: "张三", email: "san@163.com", phone: "12345678901" },
             { id: 2, username: "李四", email: "si@163.com", phone: "13355554444" },
@@ -38,7 +40,7 @@ export default {
             { id: 5, username: "钱七", email: "qi@163.com", phone: "17711225577" },
         ]);
 
-        return { users, removeUser };
+        return { users, removeUser, sortByKey };
     },
 };
 </script>
