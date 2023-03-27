@@ -1,7 +1,8 @@
 <template>
     <main>
         <div class="container">
-            <div class="box"></div>
+            <div class="box1"></div>
+            <div class="box2"></div>
             <input type="text" v-model="duration">
         </div>
     </main>
@@ -50,7 +51,7 @@ input {
     margin-top: 64px;
 }
 
-.box {
+.box1 {
     width: 100px;
     height: 100px;
     background: linear-gradient(45deg,
@@ -61,6 +62,23 @@ input {
     color: white;
     /* animation: rotateBox 10s linear infinite; */
     animation: rotateBox v-bind(duration + 's') linear infinite;
+}
+
+.box2 {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg,
+            hsl(140deg, 60%, 50%),
+            hsl(200deg, 90%, 50%));
+    padding: 0.5em 1.4em;
+    border-radius: 4px;
+    color: white;
+    margin-top: 25px;
+    transition: all 0.5s ease-in-out;
+}
+
+.box2:hover {
+    transform: scale(1.25) skewY(-20deg) rotateY(20deg);
 }
 
 @keyframes rotateBox {
