@@ -15,8 +15,6 @@
         </BaseLayout>
         <ComposablesMessageList></ComposablesMessageList>
         <UserTable></UserTable>
-        keyframes 动画关键帧:
-        <KeyframesCSS></KeyframesCSS>
     </div>
 </template>
 <script setup>
@@ -24,7 +22,6 @@ import MessageList from '../components/messages/MessageList.vue'
 import BaseLayout from '../components/BaseLayout.vue'
 import ComposablesMessageList from '../components/composables/MessageList.vue'
 import UserTable from '../components/composables/UserTable.vue'
-import KeyframesCSS from '../components/KeyframesCSS.vue'
 import { ref } from 'vue'
 const test = ref('test')
 setTimeout(() => {
