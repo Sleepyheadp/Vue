@@ -2,7 +2,7 @@
     <main>
         <div class="container">
             <button @click="boxShow = !boxShow">{{ show ? '隐藏' : '显示' }}</button>
-            <div :class=animationClasses v-if="boxShow"></div>
+            <div :class='animationClasses' v-if="boxShow"></div>
             <div class="box2"></div>
             <input type="text" v-model="duration">
         </div>
@@ -14,8 +14,18 @@ const duration = ref(10)
 const boxShow = ref(false)
 const animationClasses = ref(['box1'])
 watchEffect(() => {
-    if (boxShow.value) { animationClasses.value = ["box1", "box-enter"]; }
-    else { animationClasses.value = ['box1', "box-leave"] }
+    if (boxShow.value) {
+        animationClasses.value = ["box1", "box-enter-active", "box-enter-from"];
+        setTimeout(() => {
+            boxShow.value.push('box-enter-to')
+        }, 500);
+    }
+    else {
+        animationClasses.value = ['box1', "box-leave-active", "box-leave-from"];
+        setTimeout(() => {
+            boxShow.value.push('box-leave-to')
+        }, 500);
+    }
 })
 </script>
 <style scoped>
@@ -67,26 +77,38 @@ input {
     padding: 0.5em 1.4em;
     border-radius: 4px;
     color: white;
+    /* 单独设置了animation的class */
+    /* transition: all 1s ease-in-out; */
     /* animation: rotateBox 10s linear infinite; */
     /* animation: rotateBox v-bind(duration + 's') linear infinite; */
 }
 
-.box-enter {
-    animation: fade 0.5s;
+.box-enter-active {
+    transition: all 1s ease-in-out;
 }
 
-.box-leave {
-    animation: fade 0.5s reverse;
+/* from->to 从开始到结束 */
+.box.enter-from {
+    opacity: 0;
 }
 
-@keyframes fade {
-    0% {
-        opacity: 0;
-    }
+.box-enter-to {
+    opacity: 1;
+}
 
-    100% {
-        opacity: 1;
-    }
+/** 离场动画暂时不生效 */
+.box-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+
+.box-leave-from {
+    /** 不透明 */
+    opacity: 1;
+}
+
+.box-leave-to {
+    /** 透明 */
+    opacity: 0;
 }
 
 .box2 {
