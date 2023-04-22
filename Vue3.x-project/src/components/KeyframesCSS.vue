@@ -1,15 +1,22 @@
 <template>
     <main>
         <div class="container">
-            <div class="box1"></div>
+            <button @click="boxShow = !boxShow">{{ show ? '隐藏' : '显示' }}</button>
+            <div :class=animationClasses v-if="boxShow"></div>
             <div class="box2"></div>
             <input type="text" v-model="duration">
         </div>
     </main>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 const duration = ref(10)
+const boxShow = ref(false)
+const animationClasses = ref(['box1'])
+watchEffect(() => {
+    if (boxShow.value) { animationClasses.value = ["box1", "box-enter"]; }
+    else { animationClasses.value = ['box1', "box-leave"] }
+})
 </script>
 <style scoped>
 * {
@@ -61,7 +68,25 @@ input {
     border-radius: 4px;
     color: white;
     /* animation: rotateBox 10s linear infinite; */
-    animation: rotateBox v-bind(duration + 's') linear infinite;
+    /* animation: rotateBox v-bind(duration + 's') linear infinite; */
+}
+
+.box-enter {
+    animation: fade 0.5s;
+}
+
+.box-leave {
+    animation: fade 0.5s reverse;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .box2 {
