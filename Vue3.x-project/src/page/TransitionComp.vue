@@ -2,12 +2,12 @@
     <div>
         <vbindAnimation></vbindAnimation>
         <!-- <AnimationInOut></AnimationInOut> -->
-        <TransitionCompVue></TransitionCompVue>
+        <TransitionInOut></TransitionInOut>
     </div>
 </template>
 <script setup>
 import AnimationInOut from '../components/Transition-comp/Animation-in-out.vue';
-import TransitionCompVue from '../components/Transition-comp/Transition-comp.vue';
+import TransitionInOut from '../components/Transition-comp/Transition-in-out.vue';
 import vbindAnimation from '../components/Transition-comp/vbindAnimation.vue';
 </script>
 <style></style>
