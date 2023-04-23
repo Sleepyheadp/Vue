@@ -10,8 +10,8 @@
 </template>
 <script setup>
 import { ref, computed, Transition } from "vue";
-import CircleDot from './multiple-component- switching-animation/CircleDot.vue'
-import RectangleBox from './multiple-component- switching-animation/RectangleBox.vue'
+import CircleDot from './multiple-component-switching-animation/CircleDot.vue'
+import RectangleBox from './multiple-component-switching-animation/RectangleBox.vue'
 const shapes = [CircleDot, RectangleBox];
 const current = ref(0);
 const shape = computed(() => shapes[current.value]);
