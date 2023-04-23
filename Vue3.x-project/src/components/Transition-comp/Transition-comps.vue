@@ -1,10 +1,9 @@
 <template>
     <div class="container">
-        <Transition name="fade">
+        <Transition name="fade" mode="out-in">
             <div v-if="box === 'box1'" class="box box1">box1</div>
             <div v-else-if="box === 'box2'" class="box box2">box2</div>
             <div v-else class="box box3">box3</div>
-            <!-- <div class="box" :class="box" :key="box">{{ boxes[current] }}</div> -->
         </Transition>
     </div>
 </template>
@@ -31,7 +30,7 @@ setInterval(() => {
     border-radius: 4px;
     color: white;
     /* 方法二 */
-    grid-area: 1 / 1 / 2 / 2;
+    /* grid-area: 1 / 1 / 2 / 2; */
 }
 
 .box1 {
