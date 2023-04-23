@@ -1,10 +1,9 @@
 <template>
     <div class="container">
-        <Transition name="fade" mode="out-in">
-            <div v-if="box === 'box1'" class="box box1">box1</div>
-            <div v-else-if="box === 'box2'" class="box box2">box2</div>
-            <div v-else class="box box3">box3</div>
-        </Transition>
+        <!-- 不加key不显示动画:在使用动态元素的情况下，vue会把它们当成同一个元素，只是修改class名，所以并没有什么变化。 -->
+        <transition name="fade">
+            <div class="box" :class="box" :key="box">{{ boxes[current] }}</div>
+        </transition>
     </div>
 </template>
 
@@ -30,7 +29,7 @@ setInterval(() => {
     border-radius: 4px;
     color: white;
     /* 方法二 */
-    /* grid-area: 1 / 1 / 2 / 2; */
+    grid-area: 1 / 1 / 2 / 2;
 }
 
 .box1 {
