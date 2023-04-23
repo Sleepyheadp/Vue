@@ -7,6 +7,7 @@
         <!-- <TransitionCompsMultiple></TransitionCompsMultiple> -->
         <!-- <TransitionGroupComp></TransitionGroupComp> -->
         <AnimateCSS></AnimateCSS>
+        <AnimateJS></AnimateJS>
     </div>
 </template>
 <script setup>
@@ -20,5 +21,7 @@ import TransitionCompsMultiple from '../components/Transition-comp/Transition-co
 import TransitionGroupComp from '../components/Transition-comp/TransitionGroup-comp.vue'
 // Animation CSS 动画库
 import AnimateCSS from "../components/Transition-comp/AnimateCSS.vue"
+// JS 实现动画
+import AnimateJS from "../components/Transition-comp/AnimateJS.vue"
 </script>
 <style></style>
