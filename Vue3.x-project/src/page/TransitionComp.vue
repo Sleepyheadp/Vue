@@ -6,7 +6,7 @@
         <!-- <TransitionComps></TransitionComps> -->
         <!-- <TransitionCompsMultiple></TransitionCompsMultiple> -->
         <!-- <TransitionGroupComp></TransitionGroupComp> -->
-        <AnimatinoCSS></AnimatinoCSS>
+        <AnimateCSS></AnimateCSS>
     </div>
 </template>
 <script setup>
@@ -19,6 +19,6 @@ import TransitionCompsMultiple from '../components/Transition-comp/Transition-co
 // 处理列表项的进场/离场动画
 import TransitionGroupComp from '../components/Transition-comp/TransitionGroup-comp.vue'
 // Animation CSS 动画库
-import AnimatinoCSS from "../components/Transition-comp/AnimationCSS.vue"
+import AnimateCSS from "../components/Transition-comp/AnimateCSS.vue"
 </script>
 <style></style>
