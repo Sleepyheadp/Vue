@@ -3,9 +3,10 @@
         <!-- <vbindAnimation></vbindAnimation> -->
         <!-- <AnimationInOut></AnimationInOut> -->
         <!-- <TransitionInOut></TransitionInOut> -->
-        <TransitionComps></TransitionComps>
-        <TransitionCompsMultiple></TransitionCompsMultiple>
-        <TransitionGroupComp></TransitionGroupComp>
+        <!-- <TransitionComps></TransitionComps> -->
+        <!-- <TransitionCompsMultiple></TransitionCompsMultiple> -->
+        <!-- <TransitionGroupComp></TransitionGroupComp> -->
+        <AnimatinoCSS></AnimatinoCSS>
     </div>
 </template>
 <script setup>
@@ -17,5 +18,7 @@ import vbindAnimation from '../components/Transition-comp/vbindAnimation.vue';
 import TransitionCompsMultiple from '../components/Transition-comp/Transition-comps-multiple.vue'
 // 处理列表项的进场/离场动画
 import TransitionGroupComp from '../components/Transition-comp/TransitionGroup-comp.vue'
+// Animation CSS 动画库
+import AnimatinoCSS from "../components/Transition-comp/AnimationCSS.vue"
 </script>
 <style></style>
