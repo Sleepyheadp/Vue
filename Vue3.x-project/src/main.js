@@ -2,8 +2,9 @@ import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
 import PaginationMixin from "./mixins/PaginationMixin";
-
+import router from "./router/routes";
 const app = createApp(App);
+app.use(router);
 
 // 自定义指令
 // app.directive("fsize", {

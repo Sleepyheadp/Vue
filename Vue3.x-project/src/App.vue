@@ -14,6 +14,6 @@ import Home from "./page/home.vue"
 import CompositionApiMain from './page/CompositionApiMain.vue'
 import List from './page/list.vue'
 import TransitionComp from './page/TransitionComp.vue'
-import VueRouter from './page/vueRouter.vue'
+import VueRouter from './page/vueRouter/index.vue'
 </script>
 <style scoped></style>
