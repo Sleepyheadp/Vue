@@ -10,9 +10,9 @@
     </div>
 </template>
 <script setup>
-import PageOne from '../components/vue-router/multi-page-without-router/PageOne.vue'
-import PageTwo from '../components/vue-router/multi-page-without-router/pageTwo.vue'
-import PageThree from '../components/vue-router/multi-page-without-router/PageThree.vue'
+import PageOne from '../../components/vue-router/PageOne.vue'
+import PageTwo from '../../components/vue-router/pageTwo.vue'
+import PageThree from '../../components/vue-router/PageThree.vue'
 import { ref, computed } from 'vue'
 const routes = {
     "/": {
