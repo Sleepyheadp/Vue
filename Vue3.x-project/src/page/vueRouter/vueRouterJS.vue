@@ -10,9 +10,9 @@
     </div>
 </template>
 <script setup>
-import PageOne from '../../components/vue-router/PageOne.vue'
-import PageTwo from '../../components/vue-router/pageTwo.vue'
-import PageThree from '../../components/vue-router/PageThree.vue'
+import PageOne from '../../components/vue-router/page-spa/PageOne.vue'
+import PageTwo from '../../components/vue-router/page-spa/pageTwo.vue'
+import PageThree from '../../components/vue-router/page-spa/PageThree.vue'
 import { ref, computed } from 'vue'
 const routes = {
     "/": {
@@ -29,7 +29,6 @@ const routes = {
     }
 }
 const currentPath = ref(location.pathname)
-// vue3.x computed计算属性中箭头函数后面不带{}???
 const currentPage = computed(
     () => routes[currentPath.value].component || PageOne
 )
