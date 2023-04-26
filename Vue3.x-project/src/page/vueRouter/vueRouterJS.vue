@@ -1,7 +1,6 @@
 <template>
     <div>
         <nav>
-            <!-- route path 都是指什么？ -->
             <a v-for="(route, path) in routes" :key="route.label" :href="path" @click.prevent="changeRoute(path)">{{
                 route.label
             }}</a>
