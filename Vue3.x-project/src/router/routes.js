@@ -7,12 +7,38 @@ import NestAboutWork from "../components/vue-router/nest-routes/nest-about-work.
 import NestAboutEdu from "../components/vue-router/nest-routes/nest-about-edu.vue";
 import BlogPostPage from "../components/vue-router/blog-pages/BlogPostPage.vue";
 import BlogListPage from "../components/vue-router/blog-pages/BlogListPage.vue";
+// 命名视图
+import HomePage from "../components/vue-router/name-view/HomePage.vue";
+import FooterView from "../components/vue-router/name-view/FooterView.vue";
+import FooterViewAbout from "../components/vue-router/name-view/FooterViewAbout.vue";
+import AboutMe from "../components/vue-router/name-view/AboutMe.vue";
+import Navbar from "../components/vue-router/name-view/Navbar.vue";
+import MyBlogs from "../components/vue-router/name-view/MyBlogs.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
 	{
 		path: "/",
-		component: BlogListPage,
+		components: {
+			nav: Navbar,
+			default: HomePage,
+			footer: FooterView,
+		},
+	},
+	{
+		path: "/abouts",
+		components: {
+			nav: Navbar,
+			default: AboutMe,
+			footer: FooterViewAbout,
+		},
+	},
+	{
+		path: "/blogs",
+		components: {
+			nav: Navbar,
+			default: MyBlogs,
+		},
 	},
 	{
 		path: "/1",

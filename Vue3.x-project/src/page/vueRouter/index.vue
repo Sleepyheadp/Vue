@@ -6,7 +6,16 @@
         <!-- <vueRouter></vueRouter> -->
         <!-- 路由嵌套：子路由 -->
         <!-- <RouterSonComp></RouterSonComp> -->
-        <router-view></router-view>
+        <nav>
+            <router-view name="nav"></router-view>
+        </nav>
+        <!-- 不设置name，则默认为default -->
+        <main>
+            <router-view></router-view>
+        </main>
+        <footer>
+            <router-view name="footer"></router-view>
+        </footer>
     </div>
 </template>
 

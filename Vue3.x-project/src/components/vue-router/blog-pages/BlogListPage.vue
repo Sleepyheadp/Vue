@@ -4,7 +4,7 @@
             <router-link :to="`/${blogPost.id}`" class="title">{{ blogPost.title }}</router-link>
             <div class="body">{{ blogPost.body }}</div>
             <!-- 通过字符串跳转 -->
-            <!-- <button @click="$router.push(`/${blogPost.id}`)">查看全文</button> -->
+            <button @click="$router.push(`/${blogPost.id}`)">查看全文</button>
             <!-- 使用配置对象跳转 -->
             <!-- <button @click="$router.push({
                 name: 'blogPost',
@@ -15,8 +15,8 @@
                 name: 'blogPost',
                 params: { postId: blogPost.id }
             })">查看全文</button> -->
-            <!-- 推回到上上个路径 -->
-            <button @click="$router.go(-2)">查看全文</button>
+            <!-- 前进或者后退 0是刷新当前页面-->
+            <!-- <button @click="$router.go(-2)">查看全文</button> -->
         </div>
         <!-- 浏览器地址栏输入：/blogList/name=Capoo&age=18 -->
         <p>query:{{ $route.query }}</p>
