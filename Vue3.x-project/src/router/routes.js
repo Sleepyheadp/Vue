@@ -23,11 +23,13 @@ const routes = [
 		component: PageThree,
 	},
 	{
-		path: "/home",
+		path: "/:id",
+		name: "home",
 		component: NestHome,
 	},
 	{
-		path: "/about",
+		path: "/:id",
+		name: "about",
 		component: NestAbout,
 		children: [
 			{ path: "work", component: NestAboutWork },
