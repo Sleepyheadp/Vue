@@ -11,6 +11,10 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
 	{
+		path: "/",
+		component: BlogListPage,
+	},
+	{
 		path: "/1",
 		component: PageOne,
 	},
@@ -27,7 +31,7 @@ const routes = [
 		name: "home",
 		component: NestHome,
 	},
-	// 1、配置了name属性后设置alias
+	// alias1、配置了name属性后设置alias
 	{
 		path: "/about/:id",
 		name: "about",
@@ -38,17 +42,36 @@ const routes = [
 		],
 		alias: "/connect/:id",
 	},
-	// 2、设置多个alias路由别名
+	// alias2、设置多个alias路由别名
+	// redirect1、普通重定向：从blogList重定向到/根路径
 	{
 		path: "/blogList",
 		component: BlogListPage,
+		name: "blogList",
 		alias: ["/blog", "/list"],
+		redirect: "/", // 重定向的路径首先要存在，才能重定向到指定的路径
 	},
-	// 3、带动态参数的，别名在前面起（自己定义别名
+	// redirect3、重定向的目标也可以是一个命名的路由
+	{
+		path: "/listHome",
+		redirect: {
+			name: "blogList",
+		},
+	},
+	// alias3、带动态参数的，别名在前面起（自己定义别名
 	{
 		path: "/:postId",
 		component: BlogPostPage,
 		alias: "/pId/:postId",
+	},
+	// redirect2、重定向中含有动态参数
+	{
+		path: "/posts/:postId",
+		redirect: (to) => {
+			return {
+				path: `/${to.params.postId}`,
+			};
+		},
 	},
 ];
 const router = createRouter({
