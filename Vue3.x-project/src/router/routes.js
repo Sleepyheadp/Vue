@@ -23,26 +23,32 @@ const routes = [
 		component: PageThree,
 	},
 	{
-		path: "/:id",
+		path: "/home/:id",
 		name: "home",
 		component: NestHome,
 	},
+	// 1、配置了name属性后设置alias
 	{
-		path: "/:id",
+		path: "/about/:id",
 		name: "about",
 		component: NestAbout,
 		children: [
 			{ path: "work", component: NestAboutWork },
 			{ path: "edu", component: NestAboutEdu },
 		],
+		alias: "/connect/:id",
 	},
+	// 2、设置多个alias路由别名
 	{
 		path: "/blogList",
 		component: BlogListPage,
+		alias: ["/blog", "/list"],
 	},
+	// 3、带动态参数的，别名在前面起（自己定义别名
 	{
 		path: "/:postId",
 		component: BlogPostPage,
+		alias: "/pId/:postId",
 	},
 ];
 const router = createRouter({
