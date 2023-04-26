@@ -5,6 +5,8 @@ import NestHome from "../components/vue-router/nest-routes/nest-home.vue";
 import NestAbout from "../components/vue-router/nest-routes/nest-about.vue";
 import NestAboutWork from "../components/vue-router/nest-routes/nest-about-work.vue";
 import NestAboutEdu from "../components/vue-router/nest-routes/nest-about-edu.vue";
+import BlogPostPage from "../components/vue-router/blog-pages/BlogPostPage.vue";
+import BlogListPage from "../components/vue-router/blog-pages/BlogListPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -31,6 +33,14 @@ const routes = [
 			{ path: "work", component: NestAboutWork },
 			{ path: "edu", component: NestAboutEdu },
 		],
+	},
+	{
+		path: "/blogList",
+		component: BlogListPage,
+	},
+	{
+		path: "/:postId",
+		component: BlogPostPage,
 	},
 ];
 const router = createRouter({

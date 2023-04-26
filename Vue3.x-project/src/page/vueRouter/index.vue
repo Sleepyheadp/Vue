@@ -5,7 +5,8 @@
         <!-- vue-router router-link router-view -->
         <!-- <vueRouter></vueRouter> -->
         <!-- 路由嵌套：子路由 -->
-        <RouterSonComp></RouterSonComp>
+        <!-- <RouterSonComp></RouterSonComp> -->
+        <router-view></router-view>
     </div>
 </template>
 
