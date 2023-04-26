@@ -65,6 +65,7 @@ const routes = [
 	{
 		path: "/:postId",
 		component: BlogPostPage,
+		name: "blogPost",
 		alias: "/pId/:postId",
 	},
 	// redirect2、重定向中含有动态参数
