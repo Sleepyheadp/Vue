@@ -14,7 +14,7 @@ import PageTwo from '../../components/vue-router/page-spa/pageTwo.vue'
 import PageThree from '../../components/vue-router/page-spa/PageThree.vue'
 import { ref, computed } from 'vue'
 const routes = {
-    "/": {
+    "/1": {
         component: PageOne,
         label: "页面1"
     },
