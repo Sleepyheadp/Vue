@@ -46,10 +46,13 @@ const routes = [
 	// redirect1、普通重定向：从blogList重定向到/根路径
 	{
 		path: "/blogList",
+		redirect: "/", // 重定向的路径首先要存在，才能重定向到指定的路径
+	},
+	{
+		path: "/blogList",
 		component: BlogListPage,
 		name: "blogList",
 		alias: ["/blog", "/list"],
-		redirect: "/", // 重定向的路径首先要存在，才能重定向到指定的路径
 	},
 	// redirect3、重定向的目标也可以是一个命名的路由
 	{
