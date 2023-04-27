@@ -13,14 +13,21 @@ import { isNavigationFailure, NavigationFailureType } from 'vue-router'
 export default {
   components: { ButtonLink, PrivateLink },
   methods: {
+    // cancelled
+    // async redirectToManagementPage() {
+    //   new Promise(async (resolve) => {
+    //     const failure = await this.$router.push('/blogs')
+    //     console.log(failure);
+    //     console.log(isNavigationFailure(failure, NavigationFailureType.cancelled));
+    //     resolve()
+    //   })
+    //   this.$router.push('/login')
+    // }
+    // duplicated
     async redirectToManagementPage() {
-      const failure = await this.$router.push('/blogs')
+      const failure = await this.$router.push('/')
       console.log(failure);
-      console.log(isNavigationFailure(failure));
-      console.log(isNavigationFailure(failure, NavigationFailureType.aborted));
-      console.log(failure.from, failure.to);
-      // 用户提示操作
-      alert('请先登陆')
+      console.log(isNavigationFailure(failure, NavigationFailureType.duplicated));
     }
   }
 }

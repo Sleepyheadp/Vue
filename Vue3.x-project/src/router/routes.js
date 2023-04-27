@@ -198,7 +198,7 @@ const router = createRouter({
 	},
 });
 // 全局前置守卫：做一些登陆验证的操作，在跳转之前
-router.beforeEach((to, from) => {
+router.beforeEach(async (to, from) => {
 	// 这个时候可以验证登陆状态，但是我们在地址栏输入其他地址时/blogs/add，不会进行登陆状态的判断
 	// to.path === "/blogs" => to.path.startsWith("/blogs")
 	// 限制以blogs开头的路径都要进行登陆验证
@@ -220,7 +220,13 @@ router.beforeEach((to, from) => {
 	//2、meta合并
 	if (to.meta.private && !loggedIn) {
 		// return "/login";
-		return false; // 组织其进行跳转，验证aborted
+		// return false; // 组织其进行跳转，验证aborted
+		await new Promise((resolve) =>
+			setTimeout(() => {
+				resolve();
+			}, 3000)
+		);
+		return false;
 	}
 });
 router.beforeResolve((to) => {
