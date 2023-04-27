@@ -24,7 +24,7 @@ import HomePageNav from "../components/vue-router/nest-routes-use-name-view/Home
 import LoginPage from "../components/vue-router/nest-routes-use-name-view/LoginPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 // 定义一个登陆状态的变量
-const loggedIn = true; // 默认未登陆
+const loggedIn = false; // 默认未登陆
 const routes = [
 	{
 		path: "/",
@@ -43,6 +43,7 @@ const routes = [
 	{
 		path: "/blogs",
 		component: BlogManagement,
+		meta: { private: true }, // 3. 合并，值必须一致，否则重复的属性，会以最后一个属性值为准，子路由的 meta 属性可以省略
 		children: [
 			{
 				path: "add",
@@ -50,6 +51,9 @@ const routes = [
 					default: AddBlog,
 					rightSideBar: RightSidebar,
 				},
+				// meta: {
+				// 	private: true,
+				// },
 			},
 			{
 				path: "details/:postId",
@@ -59,10 +63,13 @@ const routes = [
 					// console.log(from);
 					// console.log(to);
 				},
+				// meta: {
+				// 	private2: true,
+				// },
 			},
 		],
 		// 对于按路由配置的导航守卫需要注意，如果是含有动态参数的url，在它们之间跳转时由于是组件复用，并没有发生页面的跳转，所以导航守卫不会重新执行。
-		beforeEnter: [authBlogsPage],
+		// beforeEnter: [authBlogsPage],
 	},
 	{
 		path: "/blogsNest",
@@ -154,19 +161,30 @@ router.beforeEach((to, from) => {
 	// 这个时候可以验证登陆状态，但是我们在地址栏输入其他地址时/blogs/add，不会进行登陆状态的判断
 	// to.path === "/blogs" => to.path.startsWith("/blogs")
 	// 限制以blogs开头的路径都要进行登陆验证
-	if (to.path.startsWith("/blogs")) {
-		if (!loggedIn) {
-			// return "/login";
-			// return {
-			// 	name: "login",
-			// };
-		}
+	// if (to.path.startsWith("/blogs")) {
+	// 	if (!loggedIn) {
+	// 		// return "/login";
+	// 		// return {
+	// 		// 	name: "login",
+	// 		// };
+	// 	}
+	// }
+
+	// meta 路由元数据
+	console.log(to);
+	// 1、判断matched -> meta
+	// if (to.matched.some((record) => record.meta.private) && !loggedIn) {
+	// 	return "/login";
+	// }
+	//2、meta合并
+	if (to.meta.private && !loggedIn) {
+		return "/login";
 	}
 });
 router.beforeResolve((to) => {
 	if (to.path.startsWith("/blogs")) {
 		if (loggedIn) {
-			console.log("用户已登陆");
+			// console.log("用户已登陆");
 		}
 	}
 });
