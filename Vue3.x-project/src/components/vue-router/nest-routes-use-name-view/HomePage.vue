@@ -1,7 +1,7 @@
 <template>
   <nav class="globalNav">
     <router-link to="/login">登录</router-link>
-    <router-link to="/blogsNest">博客管理</router-link>
+    <router-link to="/blogs">博客管理</router-link>
   </nav>
 </template>
 <style scoped>

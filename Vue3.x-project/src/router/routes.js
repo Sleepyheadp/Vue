@@ -41,7 +41,7 @@ const routes = [
 		component: LoginPage,
 	},
 	{
-		path: "/blogsNest",
+		path: "/blogs",
 		component: BlogManagement,
 		children: [
 			{
@@ -52,12 +52,12 @@ const routes = [
 				},
 			},
 			{
-				path: "details/:id",
+				path: "details/:postId",
 				component: BlogDetails,
 				// 验证在动态参数的url路径中跳转时，beforeEnter不会重复执行，需要注意。
 				beforeEnter(to, from) {
-					console.log(from);
-					console.log(to);
+					// console.log(from);
+					// console.log(to);
 				},
 			},
 		],
@@ -65,7 +65,7 @@ const routes = [
 		beforeEnter: [authBlogsPage],
 	},
 	{
-		path: "/blogs",
+		path: "/blogsNest",
 		components: {
 			nav: Navbar,
 			default: MyBlogs,
@@ -151,10 +151,10 @@ const router = createRouter({
 });
 // 全局前置守卫：做一些登陆验证的操作，在跳转之前
 router.beforeEach((to, from) => {
-	// 这个时候可以验证登陆状态，但是我们在地址栏输入其他地址时/blogsNest/add，不会进行登陆状态的判断
-	// to.path === "/blogsNest" => to.path.startsWith("/blogsNest")
-	// 限制以blogsNest开头的路径都要进行登陆验证
-	if (to.path.startsWith("/blogsNest")) {
+	// 这个时候可以验证登陆状态，但是我们在地址栏输入其他地址时/blogs/add，不会进行登陆状态的判断
+	// to.path === "/blogs" => to.path.startsWith("/blogs")
+	// 限制以blogs开头的路径都要进行登陆验证
+	if (to.path.startsWith("/blogs")) {
 		if (!loggedIn) {
 			// return "/login";
 			// return {
@@ -164,7 +164,7 @@ router.beforeEach((to, from) => {
 	}
 });
 router.beforeResolve((to) => {
-	if (to.path.startsWith("/blogsNest")) {
+	if (to.path.startsWith("/blogs")) {
 		if (loggedIn) {
 			console.log("用户已登陆");
 		}

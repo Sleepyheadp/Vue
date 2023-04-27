@@ -6,7 +6,6 @@
     <label for="password">密码：</label>
     <input id="password" type="password" />
     <button>登录</button>
-    <div>{{ $route.params.blogId }}</div>
   </form>
 </template>
 <style scoped>

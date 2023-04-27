@@ -1,9 +1,36 @@
 <template>
   <article>
-    <h2>博客详情</h2>
-    详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情
+    <h2>{{ blog.title }}</h2>
+    <p>{{ blog.body }}</p>
   </article>
 </template>
+<script>
+import { getBlogPostById } from "../../../data/blogPosts"
+export default {
+  data() {
+    return {
+      blog: {}
+    }
+  },
+  // 当我们在切换博客详情一和博客详情二的时候，发现页面数据并没有更新，因为带有动态参数，页面并没有真正的跳转
+  beforeRouteEnter(to, from, next) {
+    console.log(to);
+    console.log(this);
+    next((vm) => {
+      setTimeout(() => {
+        vm.blog = getBlogPostById(to.params.postId)
+      }, 1000);
+    })
+  },
+  // 先空白，然后再显示数据
+  beforeRouteUpdate(to) {
+    this.blog = {},
+      setTimeout(() => {
+        this.blog = getBlogPostById(to.params.postId)
+      }, 1000)
+  }
+}
+</script>
 <style scoped>
 article {
   padding: 48px;
