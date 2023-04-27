@@ -14,6 +14,11 @@ import FooterViewAbout from "../components/vue-router/name-view/FooterViewAbout.
 import AboutMe from "../components/vue-router/name-view/AboutMe.vue";
 import Navbar from "../components/vue-router/name-view/Navbar.vue";
 import MyBlogs from "../components/vue-router/name-view/MyBlogs.vue";
+// 嵌套路由使用命名视图
+import AddBlog from "../components/vue-router/nest-routes-use-name-view/AddBlog.vue";
+import BlogDetails from "../components/vue-router/nest-routes-use-name-view/BlogDetails.vue";
+import BlogManagement from "../components/vue-router/nest-routes-use-name-view/BlogManagement.vue";
+import RightSidebar from "../components/vue-router/nest-routes-use-name-view/RightSidebar.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -40,6 +45,24 @@ const routes = [
 			default: MyBlogs,
 		},
 	},
+	{
+		path: "/blogsNest",
+		component: BlogManagement,
+		children: [
+			{
+				path: "new",
+				components: {
+					default: AddBlog,
+					rightSideBar: RightSidebar,
+				},
+			},
+			{
+				path: "details",
+				component: BlogDetails,
+			},
+		],
+	},
+
 	{
 		path: "/1",
 		component: PageOne,
