@@ -28,13 +28,16 @@ import RightSidebar from "../components/vue-router/nest-routes-use-name-view/Rig
 import HomePageNav from "../components/vue-router/nest-routes-use-name-view/HomePage.vue";
 import LoginPage from "../components/vue-router/nest-routes-use-name-view/LoginPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
+// 动态添加路由
+import DynamicAddRoute from "../page/vueRouter/DynamicAddRoute.vue";
 // 定义一个登陆状态的变量
 const loggedIn = false; // 默认未登陆
 const routes = [
 	{
 		path: "/",
-		component: HomePageNav,
+		// component: HomePageNav,
 		// component: BlogListPage,
+		component: DynamicAddRoute,
 		// components: {
 		// 	nav: Navbar,
 		// 	default: HomePage,
