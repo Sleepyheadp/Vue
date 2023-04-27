@@ -15,7 +15,14 @@
                 <textarea id="page_content" cols="30" rows="10" placeholder="请输入页面内容" v-model="pageContent"></textarea>
                 <button type="submit" @click="handlePageSubmit">提交</button>
             </form>
-            <div></div>
+            <div>
+                <ul>
+                    <li v-for="page in pages" :key="page.pageUrl">
+                        {{ page.pageName }}
+                        <span @click="removePage(page.pageUrl)">删除</span>
+                    </li>
+                </ul>
+            </div>
         </main>
     </div>
 </template>
@@ -31,6 +38,7 @@ export default {
         };
     },
     methods: {
+        // 动态添加路由
         handlePageSubmit() {
             this.pages.push({
                 pageUrl: this.pageUrl,
@@ -46,6 +54,12 @@ export default {
                 },
             });
             console.log(this.$router.getRoutes());
+        },
+        // 动态删除路由
+        removePage(pageUrl) {
+            this.$router.removeRoute(pageUrl.slice(1)) // 去除路径的/,只去路径名
+            console.log(this.$router.getRoutes());
+            this.pages.splice(this.pages.findIndex((page) => page.pageUrl === pageUrl)), 1
         }
     },
 };
