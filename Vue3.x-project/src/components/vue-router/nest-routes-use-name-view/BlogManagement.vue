@@ -3,8 +3,8 @@
     <aside class="leftSideBar">
       <h2>博客管理</h2>
       <nav>
-        <router-link to="/blogsNest/add">添加博客</router-link>
-        <router-link to="/blogsNest/details">博客详情</router-link>
+        <router-link to="/blogsNest/add" linkExactActiveClass="router-link-exact-active">添加博客</router-link>
+        <router-link to="/blogsNest/details" linkExactActiveClass="router-link-exact-active">博客详情</router-link>
       </nav>
     </aside>
     <main class="content">
@@ -37,5 +37,22 @@
   display: grid;
   grid-template-columns: 1fr max-content;
   align-items: start;
+}
+
+/* exact严格匹配 */
+/* .router-link-exact-active */
+.router-link-exact-active {
+  position: relative;
+  color: hsl(280deg, 100%, 90%);
+}
+
+/* .router-link-exact-active::before  */
+.router-link-exact-active::before {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background: hsl(280deg, 100%, 70%);
+  left: -14px;
 }
 </style>
