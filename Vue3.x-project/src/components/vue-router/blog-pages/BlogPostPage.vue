@@ -18,8 +18,8 @@ export default {
         }
     },
     created() {
-        // console.log(this.postId);
-        // console.log(typeof this.postId); // 默认是string类型
+        console.log(this.postId);
+        console.log(typeof this.postId); // 默认是string类型
         this.blogPost = getBlogPostById(this.postId)
         // => 最好使用props的这种形式，通过$route.params不利于组件的复用
         // this.blogPost = getBlogPostById(this.$route.params.postId)

@@ -145,7 +145,13 @@ const routes = [
 		component: BlogPostPage,
 		name: "blogPost",
 		alias: "/pId/:postId",
-		props: true,
+		// props: true,
+		// props: { postId: 50 },// 传递静态参数
+		props: (route) => {
+			console.log(route);
+			// 设置postId的类型
+			return { postId: Number(route.params.postId) };
+		},
 	},
 	// redirect2、重定向中含有动态参数
 	{
