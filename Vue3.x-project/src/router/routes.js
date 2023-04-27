@@ -33,7 +33,8 @@ const loggedIn = false; // 默认未登陆
 const routes = [
 	{
 		path: "/",
-		component: HomePageNav,
+		// component: HomePageNav,
+		component: BlogListPage,
 		// components: {
 		// 	nav: Navbar,
 		// 	default: HomePage,
@@ -144,6 +145,7 @@ const routes = [
 		component: BlogPostPage,
 		name: "blogPost",
 		alias: "/pId/:postId",
+		props: true,
 	},
 	// redirect2、重定向中含有动态参数
 	{
@@ -181,7 +183,7 @@ const router = createRouter({
 		// 	el: "#app",
 		// 	top: -60,
 		// };
-		console.log(savedPosition); // null
+		// console.log(savedPosition); // null
 		if (savedPosition) {
 			return savedPosition;
 		} else {
@@ -204,7 +206,7 @@ router.beforeEach((to, from) => {
 	// }
 
 	// meta 路由元数据
-	console.log(to);
+	// console.log(to);
 	// 1、判断matched -> meta
 	// if (to.matched.some((record) => record.meta.private) && !loggedIn) {
 	// 	return "/login";
