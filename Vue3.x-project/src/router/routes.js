@@ -5,8 +5,13 @@ import NestHome from "../components/vue-router/nest-routes/nest-home.vue";
 import NestAbout from "../components/vue-router/nest-routes/nest-about.vue";
 import NestAboutWork from "../components/vue-router/nest-routes/nest-about-work.vue";
 import NestAboutEdu from "../components/vue-router/nest-routes/nest-about-edu.vue";
-import BlogPostPage from "../components/vue-router/blog-pages/BlogPostPage.vue";
-import BlogListPage from "../components/vue-router/blog-pages/BlogListPage.vue";
+// 路由懒加载
+// import BlogPostPage from "../components/vue-router/blog-pages/BlogPostPage.vue";
+// import BlogListPage from "../components/vue-router/blog-pages/BlogListPage.vue";
+const BlogPostPage = () =>
+	import("../components/vue-router/blog-pages/BlogPostpage.vue");
+const BlogListPage = () =>
+	import("../components/vue-router/blog-pages/BlogListPage.vue");
 // 命名视图
 import HomePage from "../components/vue-router/name-view/HomePage.vue";
 import FooterView from "../components/vue-router/name-view/FooterView.vue";
