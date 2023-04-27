@@ -19,31 +19,25 @@ import AddBlog from "../components/vue-router/nest-routes-use-name-view/AddBlog.
 import BlogDetails from "../components/vue-router/nest-routes-use-name-view/BlogDetails.vue";
 import BlogManagement from "../components/vue-router/nest-routes-use-name-view/BlogManagement.vue";
 import RightSidebar from "../components/vue-router/nest-routes-use-name-view/RightSidebar.vue";
+// 导航守卫
+import HomePageNav from "../components/vue-router/nest-routes-use-name-view/HomePage.vue";
+import LoginPage from "../components/vue-router/nest-routes-use-name-view/LoginPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
 	{
 		path: "/",
-		components: {
-			nav: Navbar,
-			default: HomePage,
-			footer: FooterView,
-		},
+		component: HomePageNav,
+		// components: {
+		// 	nav: Navbar,
+		// 	default: HomePage,
+		// 	footer: FooterView,
+		// },
 	},
 	{
-		path: "/abouts",
-		components: {
-			nav: Navbar,
-			default: AboutMe,
-			footer: FooterViewAbout,
-		},
-	},
-	{
-		path: "/blogs",
-		components: {
-			nav: Navbar,
-			default: MyBlogs,
-		},
+		path: "/login",
+		name: "login",
+		component: LoginPage,
 	},
 	{
 		path: "/blogsNest",
@@ -61,6 +55,21 @@ const routes = [
 				component: BlogDetails,
 			},
 		],
+	},
+	{
+		path: "/blogs",
+		components: {
+			nav: Navbar,
+			default: MyBlogs,
+		},
+	},
+	{
+		path: "/abouts",
+		components: {
+			nav: Navbar,
+			default: AboutMe,
+			footer: FooterViewAbout,
+		},
 	},
 	{
 		path: "/1",
@@ -131,5 +140,31 @@ const router = createRouter({
 	routes,
 	linkExactActiveClass: "",
 	linkActiveClass: "",
+});
+// 全局前置守卫：做一些登陆验证的操作，在跳转之前
+// 定义一个登陆状态的变量
+const loggedIn = true; // 默认未登陆
+router.beforeEach((to, from) => {
+	// 这个时候可以验证登陆状态，但是我们在地址栏输入其他地址时/blogsNest/add，不会进行登陆状态的判断
+	// to.path === "/blogsNest" => to.path.startsWith("/blogsNest")
+	// 限制以blogsNest开头的路径都要进行登陆验证
+	if (to.path.startsWith("/blogsNest")) {
+		if (!loggedIn) {
+			// return "/login";
+			return {
+				name: "login",
+			};
+		}
+	}
+});
+router.beforeResolve((to) => {
+	if (to.path.startsWith("/blogsNest")) {
+		if (loggedIn) {
+			console.log("用户已登陆");
+		}
+	}
+});
+router.afterEach((to) => {
+	document.title = to.path;
 });
 export default router;
