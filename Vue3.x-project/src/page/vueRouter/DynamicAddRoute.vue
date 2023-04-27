@@ -1,6 +1,9 @@
 <template>
     <div class="container">
-        <nav class="globalNav"></nav>
+        <nav class="globalNav">
+            <router-link to="/">首页</router-link>
+            <router-link v-for='page in pages' :key="page.pageUrl" :to="page.pageUrl">{{ page.pageName }}</router-link>
+        </nav>
         <main>
             <form @submit.prevent>
                 <h2>添加页面</h2>
@@ -10,13 +13,14 @@
                 <input id="page_name" type="text" placeholder="请输入页面名称，如 /关于我们" v-model="pageName" />
                 <label for="page_content">页面内容：</label>
                 <textarea id="page_content" cols="30" rows="10" placeholder="请输入页面内容" v-model="pageContent"></textarea>
-                <button type="submit">提交</button>
+                <button type="submit" @click="handlePageSubmit">提交</button>
             </form>
             <div></div>
         </main>
     </div>
 </template>
 <script>
+import PageTemplate from "../../components/vue-router/PageTemplate.vue"
 export default {
     data() {
         return {
@@ -26,7 +30,24 @@ export default {
             pages: [],
         };
     },
-    methods: {},
+    methods: {
+        handlePageSubmit() {
+            this.pages.push({
+                pageUrl: this.pageUrl,
+                pageName: this.pageName,
+                pageContent: this.pageContent,
+            });
+            this.$router.addRoute({
+                path: this.pageUrl,
+                name: this.pageUrl.slice(1),
+                component: PageTemplate,
+                props: {
+                    pageContent: this.pageContent,
+                },
+            });
+            console.log(this.$router.getRoutes());
+        }
+    },
 };
 </script>
 <style scoped>
