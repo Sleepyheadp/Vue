@@ -219,7 +219,8 @@ router.beforeEach((to, from) => {
 	// }
 	//2、meta合并
 	if (to.meta.private && !loggedIn) {
-		return "/login";
+		// return "/login";
+		return false; // 组织其进行跳转，验证aborted
 	}
 });
 router.beforeResolve((to) => {
