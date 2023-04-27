@@ -19,6 +19,26 @@ const blogPosts = [
 		title: "我是文章四",
 		body: "文章四内容",
 	},
+	{
+		id: 50,
+		title: "我是文章五",
+		body: "文章五内容",
+	},
+	{
+		id: 60,
+		title: "我是文章六",
+		body: "文章六内容",
+	},
+	{
+		id: 70,
+		title: "我是文章七",
+		body: "文章七内容",
+	},
+	{
+		id: 80,
+		title: "我是文章八",
+		body: "文章八内容",
+	},
 ];
 export function getAllPosts() {
 	return blogPosts;

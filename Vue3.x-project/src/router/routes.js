@@ -116,10 +116,10 @@ const routes = [
 	},
 	// alias2、设置多个alias路由别名
 	// redirect1、普通重定向：从blogList重定向到/根路径
-	{
-		path: "/blogList",
-		redirect: "/", // 重定向的路径首先要存在，才能重定向到指定的路径
-	},
+	// {
+	// 	path: "/blogList",
+	// 	redirect: "/", // 重定向的路径首先要存在，才能重定向到指定的路径
+	// },
 	{
 		path: "/blogList",
 		component: BlogListPage,
@@ -155,6 +155,34 @@ const router = createRouter({
 	routes,
 	linkExactActiveClass: "",
 	linkActiveClass: "",
+	scrollBehavior(to, form, savedPosition) {
+		// return { top: 100 };
+		// return {
+		// 	top: 200,
+		// 	behavior: "smooth", // 有一个平滑的效果
+		// };
+		// 延迟
+		// return new Promise((resolve) => {
+		// 	setTimeout(
+		// 		() =>
+		// 			resolve({
+		// 				top: 200,
+		// 				behavior: "smooth",
+		// 			}),
+		// 		1000
+		// 	);
+		// });
+		// return {
+		// 	el: "#app",
+		// 	top: -60,
+		// };
+		console.log(savedPosition); // null
+		if (savedPosition) {
+			return savedPosition;
+		} else {
+			return { top: 0 };
+		}
+	},
 });
 // 全局前置守卫：做一些登陆验证的操作，在跳转之前
 router.beforeEach((to, from) => {
