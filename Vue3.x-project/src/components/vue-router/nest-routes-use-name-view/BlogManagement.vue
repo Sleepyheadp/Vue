@@ -4,7 +4,8 @@
       <h2>博客管理</h2>
       <nav>
         <router-link to="/blogsNest/add" linkExactActiveClass="router-link-exact-active">添加博客</router-link>
-        <router-link to="/blogsNest/details" linkExactActiveClass="router-link-exact-active">博客详情</router-link>
+        <router-link to="/blogsNest/details/1" linkExactActiveClass="router-link-exact-active">博客详情一</router-link>
+        <router-link to="/blogsNest/details/2" linkExactActiveClass="router-link-exact-active">博客详情二</router-link>
       </nav>
     </aside>
     <main class="content">

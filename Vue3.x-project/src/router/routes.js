@@ -23,7 +23,8 @@ import RightSidebar from "../components/vue-router/nest-routes-use-name-view/Rig
 import HomePageNav from "../components/vue-router/nest-routes-use-name-view/HomePage.vue";
 import LoginPage from "../components/vue-router/nest-routes-use-name-view/LoginPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
-
+// 定义一个登陆状态的变量
+const loggedIn = true; // 默认未登陆
 const routes = [
 	{
 		path: "/",
@@ -51,10 +52,17 @@ const routes = [
 				},
 			},
 			{
-				path: "details",
+				path: "details/:id",
 				component: BlogDetails,
+				// 验证在动态参数的url路径中跳转时，beforeEnter不会重复执行，需要注意。
+				beforeEnter(to, from) {
+					console.log(from);
+					console.log(to);
+				},
 			},
 		],
+		// 对于按路由配置的导航守卫需要注意，如果是含有动态参数的url，在它们之间跳转时由于是组件复用，并没有发生页面的跳转，所以导航守卫不会重新执行。
+		beforeEnter: [authBlogsPage],
 	},
 	{
 		path: "/blogs",
@@ -142,8 +150,6 @@ const router = createRouter({
 	linkActiveClass: "",
 });
 // 全局前置守卫：做一些登陆验证的操作，在跳转之前
-// 定义一个登陆状态的变量
-const loggedIn = true; // 默认未登陆
 router.beforeEach((to, from) => {
 	// 这个时候可以验证登陆状态，但是我们在地址栏输入其他地址时/blogsNest/add，不会进行登陆状态的判断
 	// to.path === "/blogsNest" => to.path.startsWith("/blogsNest")
@@ -151,9 +157,9 @@ router.beforeEach((to, from) => {
 	if (to.path.startsWith("/blogsNest")) {
 		if (!loggedIn) {
 			// return "/login";
-			return {
-				name: "login",
-			};
+			// return {
+			// 	name: "login",
+			// };
 		}
 	}
 });
@@ -167,4 +173,9 @@ router.beforeResolve((to) => {
 router.afterEach((to) => {
 	document.title = to.path;
 });
+function authBlogsPage(to, from) {
+	if (!loggedIn) {
+		return "/login";
+	}
+}
 export default router;
