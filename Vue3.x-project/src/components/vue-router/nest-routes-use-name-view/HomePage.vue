@@ -24,10 +24,15 @@ export default {
     //   this.$router.push('/login')
     // }
     // duplicated
+    // async redirectToManagementPage() {
+    //   const failure = await this.$router.push('/')
+    //   console.log(failure);
+    //   console.log(isNavigationFailure(failure, NavigationFailureType.duplicated));
+    // }
+    // 重定向redirect
     async redirectToManagementPage() {
-      const failure = await this.$router.push('/')
-      console.log(failure);
-      console.log(isNavigationFailure(failure, NavigationFailureType.duplicated));
+      await this.$router.push("/blogs")
+      console.log(this.$router.currentRoute.value);
     }
   }
 }
