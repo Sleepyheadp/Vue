@@ -14,6 +14,8 @@
     </main>
   </div>
 </template>
+<script>
+</script>
 <style scoped>
 .container {
   width: 100%;

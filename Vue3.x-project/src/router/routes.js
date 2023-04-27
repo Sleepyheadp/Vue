@@ -33,8 +33,8 @@ const loggedIn = false; // 默认未登陆
 const routes = [
 	{
 		path: "/",
-		// component: HomePageNav,
-		component: BlogListPage,
+		component: HomePageNav,
+		// component: BlogListPage,
 		// components: {
 		// 	nav: Navbar,
 		// 	default: HomePage,
