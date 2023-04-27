@@ -3,7 +3,7 @@
     <aside class="leftSideBar">
       <h2>博客管理</h2>
       <nav>
-        <router-link to="/blogsNest/new">添加博客</router-link>
+        <router-link to="/blogsNest/add">添加博客</router-link>
         <router-link to="/blogsNest/details">博客详情</router-link>
       </nav>
     </aside>

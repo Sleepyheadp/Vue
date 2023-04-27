@@ -50,7 +50,7 @@ const routes = [
 		component: BlogManagement,
 		children: [
 			{
-				path: "new",
+				path: "add",
 				components: {
 					default: AddBlog,
 					rightSideBar: RightSidebar,
@@ -62,7 +62,6 @@ const routes = [
 			},
 		],
 	},
-
 	{
 		path: "/1",
 		component: PageOne,
