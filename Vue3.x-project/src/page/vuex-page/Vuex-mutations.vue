@@ -1,8 +1,8 @@
 <template>
     <div class="main">
         <p>{{ num }}</p>
-        <!-- <button @click="increament">增加数量</button> -->
-        <button @click="$store.commit('increament')">增加数量</button>
+        <button @click="increment">增加数量</button>
+        <!-- <button @click="$store.commit('increament')">增加数量</button> -->
         {{ arr }}
         <!-- <button @click="pushToArr({ ele: arr.length + 1 })">追加元素1</button> -->
         <!-- 如果使用$store.commit传递payload -->
@@ -15,13 +15,17 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
-import { INCREAMENT } from "../../mutations_type"
+import { mapState, mapMutations, mapActions } from 'vuex'
+import { INCREMENT } from "../../mutations_type"
 export default {
     computed: {
         ...mapState(['num', 'arr', 'user']),
     },
-    methods: mapMutations([INCREAMENT, 'pushToArr', 'changeUserName'])
+    methods: {
+        ...mapActions(['increment']),
+        ...mapMutations(['pushToArr', 'changeUserName'])
+    },
+    // 测试：为什么mutations中的方法是同步执行的？
 }
 </script>
 <style scoped>

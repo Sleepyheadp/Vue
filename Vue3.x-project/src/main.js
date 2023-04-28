@@ -4,8 +4,8 @@ import App from "./App.vue";
 import PaginationMixin from "./mixins/PaginationMixin";
 import router from "./router/routes";
 const app = createApp(App);
-import { createStore } from "vuex";
-import { INCREAMENT } from "./mutations_type";
+import { createStore, createLogger } from "vuex";
+import { INCREMENT } from "./mutations_type";
 import { users } from "./data/users";
 import { blogs } from "./data/blogs";
 app.use(router);
@@ -47,6 +47,7 @@ app.mixin({
 
 // vuex
 const store = createStore({
+	plugins: [createLogger()],
 	state() {
 		return {
 			color: [100, 100, 100],
@@ -74,7 +75,7 @@ const store = createStore({
 				Math.floor(Math.random() * 255),
 			];
 		},
-		[INCREAMENT](state) {
+		[INCREMENT](state) {
 			state.num++;
 		},
 		pushToArr(state, payload) {
@@ -131,6 +132,11 @@ const store = createStore({
 			await dispatch("fetchUsers"); // 执行fetchUsers异步方法
 			await new Promise((resolve) => setTimeout(resolve, 1000));
 			commit("loadBlogs", { blogs });
+		},
+		increment({ commit }) {
+			setTimeout(() => {
+				commit("increment");
+			}, 1000);
 		},
 	},
 });
