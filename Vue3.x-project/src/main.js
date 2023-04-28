@@ -4,6 +4,7 @@ import App from "./App.vue";
 import PaginationMixin from "./mixins/PaginationMixin";
 import router from "./router/routes";
 const app = createApp(App);
+import { createStore } from "vuex";
 app.use(router);
 
 // 自定义指令
@@ -40,5 +41,24 @@ app.mixin({
 // 	console.log(vm);
 // 	console.log(info);
 // };
+
+// vuex
+const store = createStore({
+	state() {
+		return {
+			color: [100, 100, 100],
+		};
+	},
+	mutations: {
+		randomColor(state) {
+			state.color = [
+				Math.floor(Math.random() * 255),
+				Math.floor(Math.random() * 255),
+				Math.floor(Math.random() * 255),
+			];
+		},
+	},
+});
+app.use(store);
 app.mount("#app");
 // createApp(App).mount("#app");

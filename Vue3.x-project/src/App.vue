@@ -5,7 +5,9 @@
     <!-- <CompositionApiMain></CompositionApiMain> -->
     <!-- <List></List> -->
     <!-- <TransitionComp></TransitionComp> -->
-    <VueRouter></VueRouter>
+    <!-- <VueRouter></VueRouter> -->
+    <!-- vuex相关的页面代码 -->
+    <vuexPage></vuexPage>
   </div>
 </template>
 <script setup>
@@ -15,5 +17,6 @@ import CompositionApiMain from './page/CompositionApiMain.vue'
 import List from './page/list.vue'
 import TransitionComp from './page/TransitionComp.vue'
 import VueRouter from './page/vueRouter/index.vue'
+import vuexPage from "./page/vuex-page/index.vue"
 </script>
 <style scoped></style>
