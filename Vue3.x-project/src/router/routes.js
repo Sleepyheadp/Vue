@@ -36,8 +36,8 @@ const routes = [
 	{
 		path: "/",
 		// component: HomePageNav,
-		// component: BlogListPage,
-		component: DynamicAddRoute,
+		component: BlogListPage,
+		// component: DynamicAddRoute,
 		// components: {
 		// 	nav: Navbar,
 		// 	default: HomePage,
@@ -134,6 +134,9 @@ const routes = [
 		component: BlogListPage,
 		name: "blogList",
 		alias: ["/blog", "/list"],
+		meta: {
+			transition: "fade",
+		},
 	},
 	// redirect3、重定向的目标也可以是一个命名的路由
 	{
@@ -154,6 +157,9 @@ const routes = [
 			console.log(route);
 			// 设置postId的类型
 			return { postId: Number(route.params.postId) };
+		},
+		meta: {
+			transition: "fadeAndMove",
 		},
 	},
 	// redirect2、重定向中含有动态参数
