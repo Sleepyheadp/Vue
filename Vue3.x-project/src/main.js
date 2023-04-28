@@ -5,6 +5,7 @@ import PaginationMixin from "./mixins/PaginationMixin";
 import router from "./router/routes";
 const app = createApp(App);
 import { createStore } from "vuex";
+import { INCREAMENT } from "./mutations_type";
 app.use(router);
 
 // 自定义指令
@@ -51,6 +52,13 @@ const store = createStore({
 			age: 25,
 			work: "frontEnd",
 			tip: "hello world!",
+			num: 1,
+			arr: [1, 2, 3],
+			user: {
+				id: 1,
+				name: "John",
+				age: 25,
+			},
 		};
 	},
 	mutations: {
@@ -60,6 +68,15 @@ const store = createStore({
 				Math.floor(Math.random() * 255),
 				Math.floor(Math.random() * 255),
 			];
+		},
+		[INCREAMENT](state) {
+			state.num++;
+		},
+		pushToArr(state, payload) {
+			state.arr.push(payload.ele);
+		},
+		changeUserName(state, payload) {
+			state.user.name = payload.name;
 		},
 	},
 });
