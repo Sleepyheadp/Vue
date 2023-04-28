@@ -16,10 +16,25 @@
         <p>user: <span>{{ user }}</span></p>
         <button @click="changeUserName({ name: '张三' })">修改用户名1</button>
         <!-- <button @click="$store.commit({ type: 'changeUserName', name: '张三' })">修改用户名2</button> -->
+        <!-- mapGetters -->
+        <!-- <p v-for="user in $store.getters.usersOlderThan26" :key="user.id">
+            user: <span>{{ user }}</span>
+        </p> -->
+        <p>年龄大于26的：</p>
+        <p v-for="user in usersOlderThan26" :key="user.id">
+            user: <span>{{ user }}</span>
+        </p>
+        <p>
+            年龄大于26的总计： <span>{{ numberOfUsersOlderThan26 }}</span>
+        </p>
+        <p>年龄大于25的：</p>
+        <p v-for="user in usersOlderThan(25)" :key="user.id">
+            user: <span>{{ user }}</span>
+        </p>
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from "vuex"
+import { mapState, mapMutations, mapGetters } from "vuex"
 import { INCREAMENT } from "../../mutations_type"
 export default {
     // 1、对单个state数据进行computed监听(冗余)
@@ -43,7 +58,8 @@ export default {
             const colors = this.$store.state.color
             return `rgb(${colors.join(',')})`
         },
-        ...mapState(['name', 'age', 'work', 'tip', 'num', 'arr', 'user'])
+        ...mapState(['name', 'age', 'work', 'tip', 'num', 'arr', 'user']),
+        ...mapGetters(['usersOlderThan26', 'numberOfUsersOlderThan26', 'usersOlderThan'])
     },
     methods: mapMutations([INCREAMENT, 'pushToArr', 'changeUserName'])
 }

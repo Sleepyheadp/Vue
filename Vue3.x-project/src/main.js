@@ -59,6 +59,28 @@ const store = createStore({
 				name: "John",
 				age: 25,
 			},
+			users: [
+				{
+					id: 1,
+					name: "John",
+					age: 25,
+				},
+				{
+					id: 2,
+					name: "Jane",
+					age: 26,
+				},
+				{
+					id: 3,
+					name: "Jack",
+					age: 27,
+				},
+				{
+					id: 4,
+					name: "Jill",
+					age: 28,
+				},
+			],
 		};
 	},
 	mutations: {
@@ -77,6 +99,22 @@ const store = createStore({
 		},
 		changeUserName(state, payload) {
 			state.user.name = payload.name;
+		},
+	},
+	getters: {
+		// 返回年龄大于26的user
+		usersOlderThan26(state) {
+			return state.users.filter((user) => user.age > 26);
+		},
+		// 总计(getters方法内也可以调用其他的getters方法)
+		numberOfUsersOlderThan26(state, getters) {
+			return getters.usersOlderThan26.length;
+		},
+		//
+		usersOlderThan(state) {
+			// age 和 user 怎么看的有点晕呢？
+			// => 其实就是过滤users数组中大于传递参数值的项
+			return (age) => state.users.filter((user) => user.age > age);
 		},
 	},
 });
