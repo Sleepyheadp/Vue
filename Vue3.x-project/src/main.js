@@ -47,6 +47,10 @@ const store = createStore({
 	state() {
 		return {
 			color: [100, 100, 100],
+			name: "Capoo",
+			age: 25,
+			work: "frontEnd",
+			tip: "hello world!",
 		};
 	},
 	mutations: {
