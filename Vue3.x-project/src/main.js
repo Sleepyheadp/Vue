@@ -7,6 +7,7 @@ const app = createApp(App);
 import { createStore } from "vuex";
 import { INCREAMENT } from "./mutations_type";
 import { users } from "./data/users";
+import { blogs } from "./data/blogs";
 app.use(router);
 
 // 自定义指令
@@ -61,6 +62,7 @@ const store = createStore({
 				age: 25,
 			},
 			users: [],
+			blogs: [],
 			loading: false,
 		};
 	},
@@ -83,6 +85,9 @@ const store = createStore({
 		},
 		loadUsers(state, payload) {
 			state.users = payload.users; // payload需要是对象类型
+		},
+		loadBlogs(state, payload) {
+			state.blogs = payload.blogs;
 		},
 		setLoading(state, loading) {
 			state.loading = loading;
@@ -110,12 +115,22 @@ const store = createStore({
 		// 		context.commit("loadUsers", { users });
 		// 	}, 1000);
 		// },
-		fetchUsers({ commit }, payload) {
-			commit("setLoading", true);
-			setTimeout(() => {
-				commit("loadUsers", { users: users.slice(0, payload.limit) });
-				commit("setLoading", false);
-			}, 2000);
+		// fetchUsers({ commit }, payload) {
+		// 	commit("setLoading", true);
+		// 	setTimeout(() => {
+		// 		commit("loadUsers", { users: users.slice(0, payload.limit) });
+		// 		commit("setLoading", false);
+		// 	}, 2000);
+		// },
+		async fetchUsers({ commit }) {
+			// 这个await是什么意思？
+			await new Promise((resolve) => setTimeout(resolve, 1000));
+			commit("loadUsers", { users });
+		},
+		async fetchUsersAndBlogs({ dispatch, commit }) {
+			await dispatch("fetchUsers"); // 执行fetchUsers异步方法
+			await new Promise((resolve) => setTimeout(resolve, 1000));
+			commit("loadBlogs", { blogs });
 		},
 	},
 });

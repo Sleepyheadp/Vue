@@ -15,10 +15,11 @@ export default {
     created() {
         // this.$store.dispatch("fetchUsers")
         // this.fetchUsers()
-        this.fetchUsers({ limit: 2 })
+        // this.fetchUsers({ limit: 2 })
+        this.fetchUsersAndBlogs()
     },
     computed: mapState(["users", 'loading']),
-    methods: mapActions(['fetchUsers'])
+    methods: mapActions(['fetchUsers', 'fetchUsersAndBlogs'])
 }
 </script>
 <style scoped></style>
