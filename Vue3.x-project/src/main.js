@@ -61,6 +61,9 @@ const store = createStore({
 				id: 1,
 				name: "John",
 				age: 25,
+				username: "",
+				gender: "",
+				occupation: "",
 			},
 			users: [],
 			blogs: [],
@@ -92,6 +95,9 @@ const store = createStore({
 		},
 		setLoading(state, loading) {
 			state.loading = loading;
+		},
+		updateUser(state, payload) {
+			state.user[payload.field] = payload.value;
 		},
 	},
 	getters: {
