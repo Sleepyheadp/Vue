@@ -6,6 +6,7 @@ import router from "./router/routes";
 const app = createApp(App);
 import { createStore } from "vuex";
 import { INCREAMENT } from "./mutations_type";
+import { users } from "./data/users";
 app.use(router);
 
 // 自定义指令
@@ -59,28 +60,8 @@ const store = createStore({
 				name: "John",
 				age: 25,
 			},
-			users: [
-				{
-					id: 1,
-					name: "John",
-					age: 25,
-				},
-				{
-					id: 2,
-					name: "Jane",
-					age: 26,
-				},
-				{
-					id: 3,
-					name: "Jack",
-					age: 27,
-				},
-				{
-					id: 4,
-					name: "Jill",
-					age: 28,
-				},
-			],
+			users: [],
+			loading: false,
 		};
 	},
 	mutations: {
@@ -100,6 +81,12 @@ const store = createStore({
 		changeUserName(state, payload) {
 			state.user.name = payload.name;
 		},
+		loadUsers(state, payload) {
+			state.users = payload.users; // payload需要是对象类型
+		},
+		setLoading(state, loading) {
+			state.loading = loading;
+		},
 	},
 	getters: {
 		// 返回年龄大于26的user
@@ -115,6 +102,20 @@ const store = createStore({
 			// age 和 user 怎么看的有点晕呢？
 			// => 其实就是过滤users数组中大于传递参数值的项
 			return (age) => state.users.filter((user) => user.age > age);
+		},
+	},
+	actions: {
+		// fetchUsers(context) {
+		// 	setTimeout(() => {
+		// 		context.commit("loadUsers", { users });
+		// 	}, 1000);
+		// },
+		fetchUsers({ commit }, payload) {
+			commit("setLoading", true);
+			setTimeout(() => {
+				commit("loadUsers", { users: users.slice(0, payload.limit) });
+				commit("setLoading", false);
+			}, 2000);
 		},
 	},
 });
