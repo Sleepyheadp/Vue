@@ -8,6 +8,8 @@ import { createStore, createLogger } from "vuex";
 import { INCREMENT } from "./mutations_type";
 import { users } from "./data/users";
 import { blogs } from "./data/blogs";
+import { usersModules } from "./store/users-modules";
+import { blogsModules } from "./store/blogs-modules";
 app.use(router);
 
 // 自定义指令
@@ -48,6 +50,10 @@ app.mixin({
 // vuex
 const store = createStore({
 	plugins: [createLogger()],
+	modules: {
+		usersModules,
+		blogsModules,
+	},
 	state() {
 		return {
 			color: [100, 100, 100],
@@ -68,6 +74,8 @@ const store = createStore({
 			users: [],
 			blogs: [],
 			loading: false,
+			// modules-vuex
+			limit: 0,
 		};
 	},
 	mutations: {
@@ -99,6 +107,10 @@ const store = createStore({
 		updateUser(state, payload) {
 			state.user[payload.field] = payload.value;
 		},
+		// vuex-modules
+		updateLimit(state, payload) {
+			state.limit = payload.limit;
+		},
 	},
 	getters: {
 		// 返回年龄大于26的user
@@ -114,6 +126,10 @@ const store = createStore({
 			// age 和 user 怎么看的有点晕呢？
 			// => 其实就是过滤users数组中大于传递参数值的项
 			return (age) => state.users.filter((user) => user.age > age);
+		},
+		// vuex-modules
+		limitStr(state) {
+			return "限" + state.limit + "条";
 		},
 	},
 	actions: {
@@ -142,6 +158,12 @@ const store = createStore({
 		increment({ commit }) {
 			setTimeout(() => {
 				commit("increment");
+			}, 1000);
+		},
+		// vuex-modules
+		updateLimitAsync({ commit }, payload) {
+			setTimeout(() => {
+				commit("updatelimit", payload);
 			}, 1000);
 		},
 	},

@@ -6,7 +6,10 @@
         <!-- <VuexMutations></VuexMutations> -->
         <!-- <VuexGetters></VuexGetters> -->
         <!-- <VuexActions></VuexActions> -->
-        <FormAttention></FormAttention>
+        <!-- 表单处理注意事项 -->
+        <!-- <FormAttention></FormAttention> -->
+        <!-- vuex模块化 -->
+        <VuexModules></VuexModules>
     </div>
 </template>
 
@@ -17,5 +20,6 @@ import VuexGetters from "./Vuex-getters.vue"
 import VuexActions from './Vuex-actions.vue'
 import ChangeColorFirstDemo from "./changeColor-first-demo.vue"
 import FormAttention from "./form-attention.vue"
+import VuexModules from "./vuex-modules.vue"
 </script>
 <style scoped></style>
