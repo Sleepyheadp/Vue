@@ -38,6 +38,12 @@
             <button @click="addBlog({ blog: 'blog' + (blogsModules.list.length + 1) })">
                 添加博客
             </button>
+            <button @click="addBlogAsync({ blog: 'blog' + (blogsModules.list.length + 1) })" style="margin-left: 12px">
+                添加博客（异步）
+            </button>
+            <button @click="addBlogGlobal({ blog: 'blog' + (blogsModules.list.length + 1) })" style="margin-left: 12px">
+                添加博客（全局）
+            </button>
         </div>
     </main>
 </template>
@@ -48,19 +54,19 @@ export default {
         ...mapState(["limit", "usersModules", "blogsModules"]),
         ...mapGetters([
             "limitStr",
-            "limitedBlogCountStr",
             "limitedUserCountStr",
             "limitedUsers",
-            "limitedBlogs",
         ]),
+        ...mapGetters("blogsModules", ["limitedBlogCountStr", "limitedBlogs"])
     },
     methods: {
-        ...mapMutations(["updateLimit", "addUser", "addBlog"]),
-        ...mapActions(["addUserAsync"]),
+        ...mapMutations(["updateLimit", "addUser"]),
+        ...mapMutations('blogsModules', ["addBlog"]),
+        ...mapActions(["addUserAsync", 'addBlogGlobal']),
+        ...mapActions('blogsModules', ['addBlogAsync'])
     },
 };
 </script>
-  
 <style>
 * {
     box-sizing: border-box;

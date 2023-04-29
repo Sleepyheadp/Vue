@@ -10,20 +10,19 @@ export const usersModules = {
 		},
 	},
 	actions: {
-		addUserAsync({ commit, dispatch, rootState, getters }, payload) {
+		addUserAsync({ commit, dispatch, rootState, ...rest }, payload) {
 			setTimeout(() => {
-				// console.log(rootState);
 				commit("addUser", payload);
-				// commit("addBlog", { blog: "bfromUser" });
-				dispatch("addBlogAsync", { blog: "bfromUser" });
+				commit("blogsModules/addBlog", { blog: "bfromUser" });
+				dispatch("blogsModules/addBlogAsync", { blog: "bfromUserAsync" });
 			}, 1000);
 		},
 	},
 	getters: {
-		limitedUserCountStr(state, getters, rootState) {
+		limitedUserCountStr(state, getters, rootState, rootGetters) {
 			// console.log(getters);
 			// console.log(rootState);
-			return getters.limitedBlogCountStr + "用户";
+			return rootGetters["blogsModules/limitedBlogCountStr"] + "用户";
 		},
 		limitedUsers(state, getters, rootState) {
 			return state.list.slice(0, rootState.limit || -1);
