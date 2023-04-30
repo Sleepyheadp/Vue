@@ -4,6 +4,7 @@ import actions from "./actions";
 import mutations from "./mutations";
 import { usersModules } from "./modules/users-modules";
 import { blogsModules } from "./modules/blogs-modules";
+import persistState from "./persist";
 export const store = createStore({
 	plugins: [
 		createLogger({
@@ -31,10 +32,11 @@ export const store = createStore({
 					action.payload
 				)}`;
 			},
-			logger: {
-				log: (log, styles, details) => console.error(log, styles, details), // details，例如触发的 action、mutation 等信息，和状态的变化
-			},
+			// logger: {
+			// 	log: (log, styles, details) => console.error(log, styles, details), // details，例如触发的 action、mutation 等信息，和状态的变化
+			// },
 		}),
+		persistState,
 	],
 	modules: {
 		usersModules,
