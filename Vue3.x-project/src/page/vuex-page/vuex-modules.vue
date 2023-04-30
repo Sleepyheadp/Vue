@@ -48,23 +48,58 @@
     </main>
 </template>
 <script>
-import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
+import { computed } from 'vue'
+import { mapState, mapMutations, mapGetters, mapActions } from 'vuex'
+import { useStore } from "vuex";
 export default {
-    computed: {
-        ...mapState(["limit", "usersModules", "blogsModules"]),
-        ...mapGetters([
-            "limitStr",
-            "limitedUserCountStr",
-            "limitedUsers",
-        ]),
-        ...mapGetters("blogsModules", ["limitedBlogCountStr", "limitedBlogs"])
+    setup() {
+        const store = useStore();
+        const usersModules = computed(() => store.state.usersModules);
+        const blogsModules = computed(() => store.state.blogsModules);
+        const limit = computed(
+            () => store.state.limit
+        )
+        const limitStr = computed(
+            () => store.getters.limitStr
+        );
+        const limitedUserCountStr = computed(
+            () => store.getters.limitedUserCountStr
+        );
+        const limitedUsers = computed(
+            () => store.getters.limitedUsers
+        );
+
+        const limitedBlogCountStr = computed(
+            () => store.getters["blogsModules/limitedBlogCountStr"]
+        );
+        const limitedBlogs = computed(
+            () => store.getters["blogsModules/limitedBlogs"]
+        );
+        const updateLimit = (payload) => store.commit('updateLimit', payload)
+        const addUser = (payload) => store.commit("addUser", payload);
+        const addUserAsync = (payload) => store.dispatch("addUserAsync", payload);
+        const addBlogGlobal = (payload) => store.dispatch('addBlogGlobal', payload)
+        const addBlog = (payload) => store.commit("blogsModules/addBlog", payload);
+        const addBlogAsync = (payload) => store.dispatch('blogsModules/addBlogAsync', payload)
+        return {
+            limit, usersModules, blogsModules, limitStr, limitedUserCountStr, limitedUsers, limitedBlogCountStr, limitedBlogs, addUser, updateLimit, addUserAsync, addBlogGlobal, addBlog, addBlogAsync
+        }
     },
-    methods: {
-        ...mapMutations(["updateLimit", "addUser"]),
-        ...mapMutations('blogsModules', ["addBlog"]),
-        ...mapActions(["addUserAsync", 'addBlogGlobal']),
-        ...mapActions('blogsModules', ['addBlogAsync'])
-    },
+    // computed: {
+    //     ...mapState(["limit", "usersModules", "blogsModules"]),
+    //     ...mapGetters([
+    //         "limitStr",
+    //         "limitedUserCountStr",
+    //         "limitedUsers",
+    //     ]),
+    //     ...mapGetters("blogsModules", ["limitedBlogCountStr", "limitedBlogs"])
+    // },
+    // methods: {
+    //     ...mapMutations(["updateLimit", "addUser"]),
+    //     ...mapMutations('blogsModules', ["addBlog"]),
+    //     ...mapActions(["addUserAsync", 'addBlogGlobal']),
+    //     ...mapActions('blogsModules', ['addBlogAsync'])
+    // },
 };
 </script>
 <style>
