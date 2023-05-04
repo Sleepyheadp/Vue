@@ -29,21 +29,21 @@ export const useNoteStore = defineStore("notes", () => {
 		},
 	]);
 
-	// const searchTerm = ref("");
+	const searchTerm = ref("");
 
-	// const searchedNotes = computed(() => {
-	// 	if (searchTerm.value === "") {
-	// 		return notes.value;
-	// 	} else {
-	// 		return notes.value.filter((note) => {
-	// 			return note.title.includes(searchTerm.value);
-	// 		});
-	// 	}
-	// });
+	const searchedNotes = computed(() => {
+		if (searchTerm.value === "") {
+			return notes.value;
+		} else {
+			return notes.value.filter((note) => {
+				return note.title.includes(searchTerm.value);
+			});
+		}
+	});
 
 	return {
 		notes,
-		// searchTerm,
-		// searchedNotes,
+		searchTerm,
+		searchedNotes,
 	};
 });
