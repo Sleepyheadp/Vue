@@ -20,10 +20,16 @@ const note = reactive({
 const noteStore = useNoteStore();
 
 function addNote() {
-  noteStore.notes.push({
-    id: noteStore.notes.length + 1,
-    title: note.title,
-    content: note.content,
+  noteStore.$patch({
+    notes: [
+      ...noteStore.notes,
+      {
+        id: noteStore.notes.length + 1,
+        title: note.title,
+        content: note.content,
+      }
+    ],
+    searchTerm: '',
   });
 
   note.title = "";
