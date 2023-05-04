@@ -6,7 +6,11 @@ export const useUserStore = defineStore("user", () => {
 		phone: "18611112222",
 		email: "sanzhang@test.com",
 	});
+	function isLoggedIn() {
+		return user.value !== null;
+	}
 	return {
 		user,
+		isLoggedIn,
 	};
 });

@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-
+import { useUserStore } from "./user";
 export const useNoteStore = defineStore("notes", () => {
 	const notes = ref([
 		{
@@ -40,15 +40,19 @@ export const useNoteStore = defineStore("notes", () => {
 			});
 		}
 	});
-
+	const userStore = useUserStore();
 	async function addNote(title, content) {
-		setTimeout(() => {
-			notes.value.push({
-				id: notes.length + 1,
-				title,
-				content,
-			});
-		}, 2000);
+		if (userStore.isLoggedIn()) {
+			setTimeout(() => {
+				notes.value.push({
+					id: notes.length + 1,
+					title,
+					content,
+				});
+			}, 2000);
+		} else {
+			alert("用户未登陆");
+		}
 		searchTerm.value = "";
 	}
 
