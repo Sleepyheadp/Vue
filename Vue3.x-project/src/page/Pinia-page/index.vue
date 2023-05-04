@@ -4,6 +4,7 @@
         <SearchNote></SearchNote>
         <NoteList></NoteList>
         <AddNote></AddNote>
+        <p>当前登陆的用户：{{ userStore.user.name }}</p>
     </div>
 </template>
 
@@ -11,5 +12,7 @@
 import AddNote from "../../components/piniaPages/AddNote.vue"
 import NoteList from "../../components/piniaPages/NoteList.vue"
 import SearchNote from "../../components/piniaPages/SearchNote.vue"
+import { useUserStore } from "../../stores/user"
+const userStore = useUserStore()
 </script>
 <style scoped></style>
