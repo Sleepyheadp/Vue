@@ -7,7 +7,9 @@
     <!-- <TransitionComp></TransitionComp> -->
     <!-- <VueRouter></VueRouter> -->
     <!-- vuex相关的页面代码 -->
-    <vuexPage></vuexPage>
+    <!-- <vuexPage></vuexPage> -->
+    <!-- pinia应用到项目中 -->
+    <PiniaPage></PiniaPage>
   </div>
 </template>
 <script setup>
@@ -18,5 +20,6 @@ import List from './page/list.vue'
 import TransitionComp from './page/TransitionComp.vue'
 import VueRouter from './page/vueRouter/index.vue'
 import vuexPage from "./page/vuex-page/index.vue"
+import PiniaPage from "./page/Pinia-page/index.vue"
 </script>
 <style scoped></style>
