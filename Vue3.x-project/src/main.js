@@ -5,13 +5,18 @@ import PaginationMixin from "./mixins/PaginationMixin";
 import router from "./router/routes";
 import { store } from "./store";
 import { createPinia } from "pinia";
+import themePlugin from "./plugins/themePlugin";
+import logPlugin from "./plugins/logPlugin";
 const app = createApp(App);
 
 // import { users } from "./data/users";
 // import { blogs } from "./data/blogs";
 
 app.use(router);
-app.use(createPinia());
+const pinia = createPinia();
+pinia.use(themePlugin);
+pinia.use(logPlugin);
+app.use(pinia);
 
 // 自定义指令
 // app.directive("fsize", {

@@ -14,5 +14,6 @@ import NoteList from "../../components/piniaPages/NoteList.vue"
 import SearchNote from "../../components/piniaPages/SearchNote.vue"
 import { useUserStore } from "../../stores/user"
 const userStore = useUserStore()
+console.log('pinia-page/theme:', userStore.theme);
 </script>
 <style scoped></style>
