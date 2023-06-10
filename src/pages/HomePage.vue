@@ -3,27 +3,8 @@
         <!-- 列表容器 -->
         <PostList>
             <!-- 每个帖子结构 -->
-            <PostItem v-for="(n, index) in 10" :key="index">
-                <img src="" alt="" width="100%" height="100%" style="background: #eee;">
-                <div class="postInfo">
-                    <!-- 帖子信息 -->
-                    <div class="postMeta">
-                        <TheAvatar />
-                        <span>张三</span>
-                        <span class="postPubDate">12小时之前发布</span>
-                        <PostActions />
-                    </div>
-                    <!-- 帖子描述 -->
-                    <div class="postDesc">
-                        <p>
-                            这是一棵树，这是一棵树，这是一棵树，这是一棵树，这是一棵树，这是一棵树，这是一棵树，这是一棵树。
-                        </p>
-                    </div>
-                </div>
-            </PostItem>
+            <PostItem v-for="(n, index) in 10" :key="index"></PostItem>
         </PostList>
-        <TheAvatar />
-        <TheUpload />
     </div>
 </template>
 
