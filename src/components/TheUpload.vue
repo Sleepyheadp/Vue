@@ -7,7 +7,7 @@
             </label>
             <div class="postContent">
                 <textarea placeholder="写点什么吧..." class="postContentInput"></textarea>
-                <button class="pubBtn button">发布</button>
+                <TheButton class="pubBtn" :color='btnStyle'>发布</TheButton>
             </div>
         </div>
     </TheModal>
@@ -16,6 +16,9 @@
 <script setup>
 import TheModal from "./TheModal.vue";
 import TheIcon from "./TheIcon.vue";
+import TheButton from "./TheButton.vue";
+import { ref } from 'vue'
+const btnStyle = ref('primary') 
 </script>
 <style scoped>
 .postUpload {
@@ -23,6 +26,14 @@ import TheIcon from "./TheIcon.vue";
     height: 70vh;
     display: grid;
     grid-template-rows: 4fr 1fr;
+}
+
+.pubBtn {
+    align-self: end;
+    justify-self: end;
+    position: relative;
+    right: 24px;
+    bottom: 18px;
 }
 
 .preview {
