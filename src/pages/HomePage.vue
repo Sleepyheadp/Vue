@@ -23,17 +23,17 @@
             </PostItem>
         </PostList>
         <TheAvatar />
-        <PostDetails />
+        <TheUpload />
     </div>
 </template>
 
 <script setup>
 // 头像组件
 import TheAvatar from '../components/TheAvatar.vue';
-// 点赞评论喜欢组件
 import PostActions from '../components/PostActions.vue'
 import PostList from '../components/PostList.vue'
 import PostItem from '../components/PostItem.vue'
 import PostDetails from '../components/PostDetails.vue'
+import TheUpload from '../components/TheUpload.vue'
 </script>
 <style scoped></style>
