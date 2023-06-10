@@ -7,7 +7,7 @@
             </label>
             <div class="postContent">
                 <textarea placeholder="写点什么吧..." class="postContentInput"></textarea>
-                <TheButton class="pubBtn" :color='btnStyle'>发布</TheButton>
+                <TheButton class="pubBtn">发布</TheButton>
             </div>
         </div>
     </TheModal>
@@ -17,8 +17,6 @@
 import TheModal from "./TheModal.vue";
 import TheIcon from "./TheIcon.vue";
 import TheButton from "./TheButton.vue";
-import { ref } from 'vue'
-const btnStyle = ref('primary') 
 </script>
 <style scoped>
 .postUpload {

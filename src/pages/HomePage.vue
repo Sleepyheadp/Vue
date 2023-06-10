@@ -5,7 +5,6 @@
             <!-- 每个帖子结构 -->
             <PostItem v-for="(n, index) in 10" :key="index"></PostItem>
         </PostList>
-        <TheUpload />
     </div>
 </template>
 
