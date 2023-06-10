@@ -23,6 +23,7 @@
             </PostItem>
         </PostList>
         <TheAvatar />
+        <PostDetails />
     </div>
 </template>
 
@@ -33,5 +34,6 @@ import TheAvatar from '../components/TheAvatar.vue';
 import PostActions from '../components/PostActions.vue'
 import PostList from '../components/PostList.vue'
 import PostItem from '../components/PostItem.vue'
+import PostDetails from '../components/PostDetails.vue'
 </script>
 <style scoped></style>
