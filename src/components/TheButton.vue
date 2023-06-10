@@ -7,11 +7,11 @@
 <script setup>
 import { onMounted } from 'vue';
 const props = defineProps({
-    color: String,
+    color: {
+        type: String,
+        default: 'primary'
+    },
     reverse: Boolean
-});
-onMounted(() => {
-    console.log(props.color);
 });
 </script>
 <style scoped>
