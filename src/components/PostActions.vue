@@ -1,4 +1,5 @@
 <template>
+    <!-- 点赞评论喜欢组件 -->
     <div class="postActions">
         <TheIcon icon="like" @click="emit('likeClick')" :fill="likedByMe ? '#FF3C3C' : 'none'"
             :stroke="likedByMe ? '#FF3C3C' : '#000000'" /><span>{{ likes || "1.5w" }}</span>

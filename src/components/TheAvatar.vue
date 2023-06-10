@@ -1,4 +1,5 @@
 <template>
+    <!-- 头像组件 -->
     <img :src="src || defaultAvatar" class="avatar" />
 </template>
 <script setup>
