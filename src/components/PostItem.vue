@@ -1,7 +1,7 @@
 <template>
     <!-- 首页展示列表项 -->
     <div>
-        <div class="postItem" v-for="(n, index) in 10" :key="index">
+        <div class="postItem">
             <img src="" alt="" width="100%" height="100%" style="background: #eee;">
             <div class="postInfo">
                 <!-- 帖子信息 -->
