@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { createStore } from "Vuex";
 
 import { comment } from "./comment";
 import { post } from "./post";

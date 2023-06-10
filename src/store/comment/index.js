@@ -1,5 +1,6 @@
 export const comment = {
-    state: {},
-    mutations: {},
-    actions: {},
-    getters: {}
+	state: {},
+	mutations: {},
+	actions: {},
+	getters: {},
+};
