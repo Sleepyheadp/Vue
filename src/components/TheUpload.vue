@@ -2,8 +2,19 @@
     <TheModal @close="store.commit('changeUpload', false)">
         <div class="postUpload">
             <label class="upload" for="">
-                <TheIcon icon="upload-image" />
-                <input type="file" accept="image/*" class="fileChooser" />
+                <img 
+                    alt="" 
+                    v-if="imageObjUrl" 
+                    :src="imageObjUrl" 
+                    class="preview"
+                >
+                <TheIcon v-else icon="upload-image" />
+                <input 
+                    type="file" 
+                    accept="image/*" 
+                    class="fileChooser" 
+                    @change="handleImageUpload"
+                />
             </label>
             <div class="postContent">
                 <textarea placeholder="写点什么吧..." class="postContentInput"></textarea>
@@ -17,8 +28,22 @@
 import TheModal from "./TheModal.vue";
 import TheIcon from "./TheIcon.vue";
 import TheButton from "./TheButton.vue";
+
 import { useStore } from "vuex";
+import { ref } from "vue";
+
 const store = useStore();
+const imageObjUrl = ref('');
+
+async function handleImageUpload(e) {
+    // 默认允许上传一张图片
+    console.log('handleImageUpload', e.target);
+    const imageFile = e.target.files[0];
+    if (imageFile) {
+        // 设置预览
+        imageObjUrl.value = URL.createObjectURL(imageFile);
+    }
+}
 </script>
 <style scoped>
 .postUpload {
@@ -40,6 +65,7 @@ const store = useStore();
     place-items: center;
     cursor: pointer;
     min-height: 0;
+    padding: 75px;
 }
 
 .upload>svg {
@@ -50,6 +76,8 @@ const store = useStore();
 .fileChooser {
     opacity: 0;
     position: absolute;
+    width: 300px;
+    height: 300px;
 }
 
 .postContent {
