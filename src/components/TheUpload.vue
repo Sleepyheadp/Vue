@@ -17,8 +17,8 @@
                 />
             </label>
             <div class="postContent">
-                <textarea placeholder="写点什么吧..." class="postContentInput"></textarea>
-                <TheButton class="pubBtn">发布</TheButton>
+                <textarea v-model="description" placeholder="写点什么吧..." class="postContentInput"></textarea>
+                <TheButton class="pubBtn" @click="publishPost">发布</TheButton>
             </div>
         </div>
     </TheModal>
@@ -35,6 +35,11 @@ import { ref } from "vue";
 const store = useStore();
 const imageObjUrl = ref('');
 
+// 上传的图片url及描述
+const image = ref(null);
+const description = ref('');
+
+// 预览图片（主要是预览
 async function handleImageUpload(e) {
     // 默认允许上传一张图片
     console.log('handleImageUpload', e.target);
@@ -42,7 +47,16 @@ async function handleImageUpload(e) {
     if (imageFile) {
         // 设置预览
         imageObjUrl.value = URL.createObjectURL(imageFile);
+        // 设置图片文件
+        image.value = imageFile;
     }
+}
+// 发布图片
+function publishPost() {
+    store.dispatch('uploadPost', {
+        image: image.value,
+        description: description.value
+    })
 }
 </script>
 <style scoped>
