@@ -10,8 +10,15 @@ export const store = createStore({
 		post,
 		user,
 	},
-	state: {},
-	mutations: {},
-	actions: {},
+	state: {
+		showUpload: false,
+	},
+	mutations: {
+		changeUpload(state, show) {
+			state.showUpload = show;
+		}
+	},
+	actions: {
+	},
 	getters: {},
 });

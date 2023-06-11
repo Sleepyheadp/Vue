@@ -1,7 +1,7 @@
 <template>
-    <TheModal>
+    <TheModal @close="store.commit('changeUpload', false)">
         <div class="postUpload">
-            <label calss="upload" for="">
+            <label class="upload" for="">
                 <TheIcon icon="upload-image" />
                 <input type="file" accept="image/*" class="fileChooser" />
             </label>
@@ -17,6 +17,8 @@
 import TheModal from "./TheModal.vue";
 import TheIcon from "./TheIcon.vue";
 import TheButton from "./TheButton.vue";
+import { useStore } from "vuex";
+const store = useStore();
 </script>
 <style scoped>
 .postUpload {
@@ -24,14 +26,6 @@ import TheButton from "./TheButton.vue";
     height: 70vh;
     display: grid;
     grid-template-rows: 4fr 1fr;
-}
-
-.pubBtn {
-    align-self: end;
-    justify-self: end;
-    position: relative;
-    right: 24px;
-    bottom: 18px;
 }
 
 .preview {
