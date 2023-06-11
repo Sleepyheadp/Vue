@@ -3,7 +3,7 @@
         <!-- 列表容器 -->
         <PostList>
             <!-- 每个帖子结构 -->
-            <PostItem v-for="(n, index) in 10" :key="index"></PostItem>
+            <PostItem v-for="post in posts" :key="post" :post="post"></PostItem>
         </PostList>
         <TheUpload v-if="showUpload" />
     </div>
@@ -18,8 +18,12 @@ import PostItem from '../components/PostItem.vue'
 import PostDetails from '../components/PostDetails.vue'
 import TheUpload from '../components/TheUpload.vue'
 import { useStore } from 'vuex'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 const store = useStore()
 const showUpload = computed(() => store.state.showUpload)
+const posts = computed(() => store.state.post.list)
+onMounted(() => {
+    store.dispatch('loadAllPosts')
+})
 </script>
 <style scoped></style>

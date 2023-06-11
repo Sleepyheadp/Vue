@@ -2,21 +2,26 @@
     <!-- 首页展示列表项 -->
     <div>
         <div class="postItem">
-            <img src="" alt="" width="100%" height="100%" style="background: #eee;">
+            <img 
+                :src="post.image" 
+                alt="" 
+                width="100%" 
+                height="100%" 
+                style="background: #eee;"
+            >
             <div class="postInfo">
                 <!-- 帖子信息 -->
                 <div class="postMeta">
-                    <!-- <img src="" alt="" class="avator"> -->
-                    <TheAvatar />
-                    <span>张三</span>
-                    <span class="postPubDate">12小时之前发布</span>
+                    <TheAvatar :src="post?.user?.avatar" />
+                    <span>{{ post?.user?.name }}</span>
+                    <span class="postPubDate">
+                        {{ dateToRelative(post.publishedAt) }}
+                    </span>
                     <PostActions />
                 </div>
                 <!-- 帖子描述 -->
                 <div class="postDesc">
-                    <p>
-                        这是一棵树，这是一棵树，这是一棵树，这是一棵树，这是一棵树，这是一棵树，这是一棵树，这是一棵树。
-                    </p>
+                    <p>{{ post.description }}</p>
                 </div>
             </div>
         </div>
@@ -26,6 +31,16 @@
 <script setup>
 import TheAvatar from '../components/TheAvatar.vue';
 import PostActions from '../components/PostActions.vue'
+
+// 时间处理
+import { dateToRelative } from '../utils/date'
+
+defineProps({
+    post: {
+        type: Object,
+        default: {}
+    }
+})
 </script>
 <style scoped>
 .postItem {
