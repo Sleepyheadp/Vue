@@ -32,3 +32,16 @@ export async function register(email, username, password) {
 	saveUser(result.user);
 	return result;
 }
+export async function login(email, password) {
+	const result = await request("/api/auth/local", {
+		method: "POST",
+		auth: false,
+		body: {
+			identifier: email,
+			password,
+		},
+	});
+	setJwtToken(result.jwt);
+	saveUser(result.user);
+	return result;
+}

@@ -49,7 +49,11 @@ async function register() {
     router.replace('/')
 }
 async function login() {
-    console.log('log...');
+    await store.dispatch('loginUser', {
+        email: email.value,
+        password: password.value,
+    })
+    router.replace('/')
 }
 
 </script>
