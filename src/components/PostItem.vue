@@ -8,6 +8,7 @@
                 width="100%" 
                 height="100%" 
                 style="background: #eee;"
+                @click="commentsClick"
             >
             <div class="postInfo">
                 <!-- 帖子信息 -->
@@ -25,6 +26,7 @@
                         :favoredByMe="post.favoredByMe"
                         @likeClick="likeClick"
                         @favorClick = 'favorClick'
+                        @commentsClick="commentsClick"
                     />
                 </div>
                 <!-- 帖子描述 -->
@@ -59,6 +61,10 @@ const likeClick = () => {
 }
 const favorClick = () => {
     store.dispatch('toggleFavor', props.post.id)
+}
+// 点击评论
+const commentsClick = () => {
+    store.dispatch('showPostDetails', props.post.id)
 }
 </script>
 <style scoped>

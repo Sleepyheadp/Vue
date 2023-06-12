@@ -12,10 +12,14 @@ export const store = createStore({
 	},
 	state: {
 		showUpload: false,
+		showDetails: false
 	},
 	mutations: {
-		changeUpload(state, show) {
+		changeShowPostUpload(state, show) {
 			state.showUpload = show;
+		},
+		changeShowPostDetails(state, show) {
+			state.showDetails = show;
 		}
 	},
 	actions: {

@@ -3,14 +3,15 @@ export const post = {
 	state() {
 		return {
 			list: [],
+			currentId: null,
 		}
 	},
 	mutations: {
 		initializePosts(state, posts) {
 			state.list = posts;
 		},
+		// 处理点赞的逻辑
 		toggleLike(state, { id, isLike }) {
-			// 处理点赞的逻辑
 			const post = state.list.find((post) => post.id === id);
 			if (isLike) {
 				post.liked_bies = (post.liked_bies || 0) + 1
@@ -19,6 +20,7 @@ export const post = {
 			}
 			post.likedByMe = isLike;
 		},
+		// 处理收藏的逻辑
 		toggleFavor(state, { id, isFavor }) {
 			const post = state.list.find((post) => post.id === id);
 			if (isFavor) {
@@ -27,6 +29,10 @@ export const post = {
 				post.favored_bies--;
 			}
 			post.favoredByMe = isFavor;
+		},
+		// 获取当前点击的帖子的id
+		setCurrentId(state, id) {
+			state.currentId = id;
 		}
 	},
 	actions: {
@@ -35,7 +41,7 @@ export const post = {
 			await createPost(image, description)
 			dispatch('loadAllPosts')
 			// 关闭对话框
-			commit("changeUpload", false);
+			commit("changeShowPostUpload", false);
 		},
 		// 加载所有的帖子
 		async loadAllPosts({ commit }) {
@@ -51,7 +57,21 @@ export const post = {
 		async toggleFavor({ commit }, id) {
 			const isFavor = await favorPost(id);
 			commit("toggleFavor", { id, isFavor })
+		},
+		// 评论帖子
+		async showPostDetails({ commit }, id) {
+			commit("setCurrentId", id)
+			commit("changeShowPostDetails", true)
+		},
+		async hidePostDetails({ commit }) {
+			commit("setCurrentId", null)
+			commit("changeShowPostDetails", false)
 		}
 	},
-	getters: {},
+	getters: {
+		// 获取当前评论帖子的内容
+		postDetails(state) {
+			return state.list.find((post) => post.id === state.currentId)
+		}
+	},
 };
