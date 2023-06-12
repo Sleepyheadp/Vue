@@ -34,8 +34,23 @@
 							:favoredByMe="post.favoredByMe"
 						/>
 						<span class="postPubDate">{{ dateToRelative(post.publishedAt) }}</span>
-						<input type="text" name="comment" id="" class="commentInput" placeholder="写一条评论吧！" />
-						<button class="commentPubBtn">
+						<input 
+							type="text" 
+							name="comment" id="" 
+							class="commentInput" 
+							placeholder="写一条评论吧！" 
+							v-model="content"
+						/>
+						<button 
+							class="commentPubBtn"
+							@click="
+								store.dispatch('addComment', {
+									content,
+									postId: post.id,
+									method: 'Post'
+								})
+								"
+						>
 							发布
 						</button>
 				</div>
@@ -50,11 +65,19 @@ import TheModal from "./TheModal.vue";
 import TheAvatar from "./TheAvatar.vue";
 import PostActions from "./PostActions.vue";
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { dateToRelative } from "../utils/date";
-
 const store = useStore();
+
+const content = ref("")
 const post = computed(() => store.getters.postDetails);
+// const addComment = () => {
+// 	store.dispatch("addComment", {
+// 		content: content.value,
+// 		postId: post.id,
+// 	});
+// };
+
 </script>
 <style scoped>
 .postDetails {

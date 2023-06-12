@@ -66,7 +66,12 @@ export const post = {
 		async hidePostDetails({ commit }) {
 			commit("setCurrentId", null)
 			commit("changeShowPostDetails", false)
-		}
+		},
+		// 评论页增加评论数
+		increaseCommentCount(state, id) {
+			const post = state.list.find((post) => post.id === id);
+			post.comments++;
+		},
 	},
 	getters: {
 		// 获取当前评论帖子的内容

@@ -10,9 +10,11 @@ export const store = createStore({
 		post,
 		user,
 	},
-	state: {
-		showUpload: false,
-		showDetails: false
+	state() {
+		return {
+			showUpload: false,
+			showDetails: false
+		}
 	},
 	mutations: {
 		changeShowPostUpload(state, show) {
