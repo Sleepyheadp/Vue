@@ -14,7 +14,7 @@
             <label for="intro">简介</label>
             <textarea name="" id="" cols="" rows="12" v-model="profileData.intro"></textarea>
             <label for="mobilePhone">手机号：</label>
-            <input type="text" v-model="mobilePhone" />
+            <input type="text" v-model="profileData.mobilePhone" />
             <label for="">性别</label>
             <div class="genderRadios">
                 <input v-model="profileData.gender" type="radio" name="gender" id="M" value="M" />男

@@ -23,6 +23,8 @@ export const user = {
 		async updateUser({ commit }, user) {
 			const updateUser = await changeUser(user)
 			commit('setUser', updateUser)
+			console.log('state.user', JSON.parse(JSON.stringify(user)));
+
 		}
 	},
 	getters: {},

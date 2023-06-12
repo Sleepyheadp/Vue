@@ -8,30 +8,36 @@
                     <router-link to="/profile/edit">编辑个人资料</router-link>
                 </p>
                 <p class="handle">{{ user.username }}</p>
+                <p class="mobilePhone">{{ user.mobilePhone }}</p>
+                <p>{{ user.gender = 'M' ? '男' : '女' }}</p>
                 <div class="description">
                     <pre>{{ user.intro }}</pre>
-                    <p class="website">{{ user.website }}</p>
+                    <p class="website">Follow Me:{{ user.website }}</p>
                 </div>
             </div>
         </div>
         <div class="tabs">
-            <div class="tab active">
-                <TheIcon icon="posts" />
-                <p>我的</p>
-            </div>
-            <div class="tab">
-                <TheIcon icon="like" />
-                <p>赞过</p>
-            </div>
-            <div class="tab">
-                <TheIcon icon="favorite" />
-                <p>收藏</p>
+            <div 
+                v-for="(tab, index) in tabs" 
+                :key="tab.id" 
+                class="tab"
+                :class="{ active: currentTab === index }"
+                @click="currentTab = index"
+            >
+                <TheIcon :icon="tab.icon" />
+                <p>{{ tab.label }}</p>
             </div>
         </div>
         <div class="tabContent">
-            <p>162篇帖子</p>
+            <p>{{ myPosts[currentTab].length }}</p>
             <div class="posts">
-                <img class="postImage" v-for="n in 9" :key="n" src="" alt="">
+                <img 
+                    v-for="post in myPosts[currentTab]" 
+                    :key="post.id" 
+                    :src="post.image" 
+                    class="postImage" 
+                    alt=""
+                >
             </div>
         </div>
     </div>
@@ -41,11 +47,61 @@
 import TheAvatar from '../components/TheAvatar.vue';
 import TheIcon from '../components/TheIcon.vue';
 
-import { computed } from 'vue';
+import { computed, ref, reactive, watch } from 'vue';
 import { useStore } from 'vuex';
+import {
+    loadPostsByMe, loadPostsLikedOrFavoredByMe,
+} from "../apis/post";
 
 const store = useStore();
 const user = computed(() => store.state.user.user);
+
+const tabs = ref([
+    {
+        icon: 'posts',
+        label: '我的',
+    },
+    {
+        icon: 'like',
+        label: '赞过',
+    },
+    {
+        icon: 'favorite',
+        label: '收藏',
+    }
+])
+const currentTab = ref(0)
+
+const myPosts = reactive({
+    0: [], // 我的
+    1: [], // 赞过
+    2: [], // 收藏
+})
+watch(
+    currentTab,
+    async () => {
+        switch (currentTab.value) {
+            case 0:
+                if (myPosts[0].length == 0) {
+                    myPosts[0] = await loadPostsByMe();
+                }
+                break;
+            case 1:
+                if (myPosts[1].length == 0) {
+                    myPosts[1] = await loadPostsLikedOrFavoredByMe();
+                }
+                break;
+            case 2:
+                if (myPosts[2].length == 0) {
+                    myPosts[2] = await loadPostsLikedOrFavoredByMe('favors');
+                }
+            default:
+                return
+        }
+    },
+    { immediate: true }
+)
+
 
 </script>
 <style scoped>

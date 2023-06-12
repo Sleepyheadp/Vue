@@ -3,6 +3,7 @@
 */
 import { getJwtToken } from "./auth";
 import { request } from "../utils/request";
+import { getUser } from "./auth";
 
 // 上传图片
 export async function createPost(image, description) {
@@ -37,6 +38,26 @@ export async function loadPosts(filters = "") {
 			id: post?.attributes?.user?.data?.id,
 			...post?.attributes?.user?.data?.attributes,
 		},
+	}));
+}
+
+// 我创建的
+export async function loadPostsByMe() {
+	return loadPosts(`filters[user][id][$eq]=${getUser().id}`);
+}
+
+/**
+ *
+ * @param {"likes" | "favors"} type 赞过和收藏过的帖子
+ * @returns
+ */
+export async function loadPostsLikedOrFavoredByMe(type = "likes") {
+	const response = await request(
+		`/api/users/me?populate[${type}][populate][0]=image`
+	);
+	return response[type].map((post) => ({
+		...post,
+		image: post?.image?.[0].url,
 	}));
 }
 
