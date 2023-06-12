@@ -33,7 +33,12 @@ export const post = {
 		// 获取当前点击的帖子的id
 		setCurrentId(state, id) {
 			state.currentId = id;
-		}
+		},
+		// 评论页增加评论数
+		increaseCommentCount(state, id) {
+			const post = state.list.find((post) => post.id === id);
+			post.comments++;
+		},
 	},
 	actions: {
 		// 上传图片
@@ -59,19 +64,16 @@ export const post = {
 			commit("toggleFavor", { id, isFavor })
 		},
 		// 评论帖子
-		async showPostDetails({ commit }, id) {
+		async showPostDetails({ commit, dispatch }, id) {
 			commit("setCurrentId", id)
+			dispatch('loadAllComments', id)
 			commit("changeShowPostDetails", true)
 		},
 		async hidePostDetails({ commit }) {
 			commit("setCurrentId", null)
 			commit("changeShowPostDetails", false)
 		},
-		// 评论页增加评论数
-		increaseCommentCount(state, id) {
-			const post = state.list.find((post) => post.id === id);
-			post.comments++;
-		},
+
 	},
 	getters: {
 		// 获取当前评论帖子的内容

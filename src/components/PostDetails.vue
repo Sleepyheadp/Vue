@@ -13,13 +13,13 @@
 				</pre>
 				<!-- 评论 -->
 				<div class="comments">
-					<div class="comment" v-for="n in 10" :key="n">
-						<TheAvatar />
-						<span class="user">capoo</span>
+					<div class="comment" v-for="comment in comments" :key="comment">
+						<TheAvatar :src="comment.user?.avatar" />
+						<span class="user">{{ comment.user?.name }}</span>
 						<span class="commentDate">
-							1d
+							{{ dateToRelative(comment.pubDate) }}
 						</span>
-						<p class="commentContent">nice tietie</p>
+						<p class="commentContent">{{ comment.content }}</p>
 					</div>
 				</div>
 				<div class="actions">
@@ -43,13 +43,7 @@
 						/>
 						<button 
 							class="commentPubBtn"
-							@click="
-								store.dispatch('addComment', {
-									content,
-									postId: post.id,
-									method: 'Post'
-								})
-								"
+							@click="addComment"
 						>
 							发布
 						</button>
@@ -65,18 +59,21 @@ import TheModal from "./TheModal.vue";
 import TheAvatar from "./TheAvatar.vue";
 import PostActions from "./PostActions.vue";
 import { useStore } from "vuex";
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { dateToRelative } from "../utils/date";
 const store = useStore();
 
 const content = ref("")
+// 「注」computed计算属性返回的是一个ref类型的值，因此取值需要通过post.value.id的形式
+// template模版中不需要加.value直接取值即可
 const post = computed(() => store.getters.postDetails);
-// const addComment = () => {
-// 	store.dispatch("addComment", {
-// 		content: content.value,
-// 		postId: post.id,
-// 	});
-// };
+const addComment = () => {
+	store.dispatch("addComment", {
+		content: content.value,
+		postId: post.value.id,
+	});
+};
+const comments = computed(() => store.state.comment.list);
 
 </script>
 <style scoped>

@@ -65,6 +65,7 @@ const favorClick = () => {
 // 点击评论
 const commentsClick = () => {
     store.dispatch('showPostDetails', props.post.id)
+    console.log('点击的item_id', props.post.id);
 }
 </script>
 <style scoped>
