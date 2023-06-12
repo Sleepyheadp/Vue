@@ -39,3 +39,21 @@ export async function loadPosts(filters = "") {
 		},
 	}));
 }
+
+// 喜欢（点赞）
+export async function likePost(id) {
+	// 这个接口返回isLike字段，用于判断是否点赞（喜欢）成功 true/false
+	const response = await request(`/api/posts/${id}/like`, {
+		method: "PUT",
+	});
+	return response.data;
+}
+
+// 收藏方法
+export async function favorPost(id) {
+	// 这个接口返回isPost字段，用于判断是否收藏成功 true/false
+	const response = await request(`/api/posts/${id}/favor`, {
+		method: "PUT",
+	});
+	return response.data;
+}

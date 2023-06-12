@@ -17,7 +17,15 @@
                     <span class="postPubDate">
                         {{ dateToRelative(post.publishedAt) }}
                     </span>
-                    <PostActions />
+                    <PostActions 
+                        :likes="post.liked_bies" 
+                        :comments="post.comments" 
+                        :favors="post.favored_bies" 
+                        :likedByMe="post.likedByMe" 
+                        :favoredByMe="post.favoredByMe"
+                        @likeClick="likeClick"
+                        @favorClick = 'favorClick'
+                    />
                 </div>
                 <!-- 帖子描述 -->
                 <div class="postDesc">
@@ -32,15 +40,26 @@
 import TheAvatar from '../components/TheAvatar.vue';
 import PostActions from '../components/PostActions.vue'
 
+import { useStore } from 'vuex'
+
 // 时间处理
 import { dateToRelative } from '../utils/date'
 
-defineProps({
+const props = defineProps({
+    // 帖子数据
     post: {
         type: Object,
         default: {}
     }
 })
+// 点赞收藏
+const store = useStore()
+const likeClick = () => {
+    store.dispatch('toggleLike', props.post.id)
+}
+const favorClick = () => {
+    store.dispatch('toggleFavor', props.post.id)
+}
 </script>
 <style scoped>
 .postItem {

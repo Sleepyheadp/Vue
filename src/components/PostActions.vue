@@ -1,12 +1,29 @@
 <template>
-    <!-- 点赞评论喜欢组件 -->
+    <!-- 点赞评论收藏组件 -->
     <div class="postActions">
-        <TheIcon icon="like" @click="emit('likeClick')" :fill="likedByMe ? '#FF3C3C' : 'none'"
-            :stroke="likedByMe ? '#FF3C3C' : '#000000'" /><span>{{ likes || "1.5w" }}</span>
-        <TheIcon icon="comment" @click="emit('commentsClick')" fill="none" stroke="#000000" /><span>{{ comments || "1w"
-        }}</span>
-        <TheIcon icon="favorite" @click="emit('favorClick')" :fill="favoredByMe ? '#FFD12E' : 'none'"
-            :stroke="favoredByMe ? '#FFD12E' : '#000000'" /><span>{{ favors || "99w" }}</span>
+        <TheIcon 
+            icon="like" 
+            @click="emit('likeClick')" 
+            :fill="likedByMe ? '#FF3C3C' : 'none'"
+            :stroke="likedByMe ? '#FF3C3C' : '#000000'" 
+        />
+            <span>{{ likes || '' }}
+        </span>
+        <TheIcon 
+            icon="comment" 
+            @click="emit('commentsClick')" 
+            fill="none" stroke="#000000" 
+        />
+            <span>{{ comments || "" }}
+        </span>
+        <TheIcon 
+            icon="favorite" 
+            @click="emit('favorClick')" 
+            :fill="favoredByMe ? '#FFD12E' : 'none'"
+            :stroke="favoredByMe ? '#FFD12E' : '#000000'" 
+        />
+            <span>{{ favors || "" }}
+        </span>
     </div>
 </template>
 <script setup>
