@@ -4,6 +4,7 @@ export const post = {
 		return {
 			list: [],
 			currentId: null,
+			searchResult: []
 		}
 	},
 	mutations: {
@@ -39,6 +40,10 @@ export const post = {
 			const post = state.list.find((post) => post.id === id);
 			post.comments++;
 		},
+		// 搜索帖子
+		setPostsSearchResult(state, posts) {
+			state.searchResult = posts;
+		},
 	},
 	actions: {
 		// 上传图片
@@ -73,7 +78,13 @@ export const post = {
 			commit("setCurrentId", null)
 			commit("changeShowPostDetails", false)
 		},
-
+		// 搜索帖子
+		async searchPosts({ commit }, term) {
+			const posts = await loadPosts(
+				"filters[description][$contains]=" + term
+			);
+			commit("setPostsSearchResult", posts);
+		},
 	},
 	getters: {
 		// 获取当前评论帖子的内容
