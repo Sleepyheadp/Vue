@@ -1,21 +1,16 @@
 <template>
     <div>
         <div class="profileContainer">
-            <TheAvatar :width="186" :height="186" />
+            <TheAvatar :src="user.avatar" :width="186" :height="186" />
             <div class="profile">
                 <p class="name">
-                    <span>张三</span>
+                    <span>{{ user.name }}</span>
                     <router-link to="/profile/edit">编辑个人资料</router-link>
                 </p>
-                <p class="handle">@san_zhang</p>
+                <p class="handle">{{ user.username }}</p>
                 <div class="description">
-                    <pre>
-                        90后摄影师
-                        毕业于中央艺术学院
-                        钢琴八级
-                        热爱生活，从中发现艺术。
-                    </pre>
-                    <p class="website">https://zhangsan.com</p>
+                    <pre>{{ user.intro }}</pre>
+                    <p class="website">{{ user.website }}</p>
                 </div>
             </div>
         </div>
@@ -45,6 +40,13 @@
 <script setup>
 import TheAvatar from '../components/TheAvatar.vue';
 import TheIcon from '../components/TheIcon.vue';
+
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+const user = computed(() => store.state.user.user);
+
 </script>
 <style scoped>
 .profileContainer {
