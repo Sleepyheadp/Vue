@@ -14,9 +14,14 @@
             </button>
             <!-- dropdown -->
             <div class="profileDropDown">
-                <TheAvatar width="42" height="42" style="cursor:pointer" />
-                <div class="dropdownMenu">
-                    <ul class="profileMenu">
+                <TheAvatar 
+                    width="42" 
+                    height="42" 
+                    style="cursor:pointer" 
+                    @click="showDropDown = !showDropDown"
+                />
+                <div class="dropdownMenu" v-show="showDropDown">
+                    <ul class="profileMenu" @click="showDropDown = false">
                         <li><router-link to="/profile">个人主页</router-link></li>
                         <li>退出登录</li>
                     </ul>
@@ -29,11 +34,15 @@
 <script setup>
 import TheIcon from "./TheIcon.vue";
 import TheAvatar from "./TheAvatar.vue";
+import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
 const store = useStore()
 const router = useRouter()
+
+// 下拉菜单显隐
+const showDropDown = ref(false)
 
 function publishPost() {
     store.commit('changeShowPostUpload', true)
