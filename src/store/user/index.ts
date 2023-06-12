@@ -1,5 +1,6 @@
 import { getUser, register, login } from "../../apis/auth";
 import { changeUser } from "../../apis/user"
+import { logout } from "../../apis/auth"
 export const user = {
 	state() {
 		return {
@@ -24,7 +25,11 @@ export const user = {
 			const updateUser = await changeUser(user)
 			commit('setUser', updateUser)
 			console.log('state.user', JSON.parse(JSON.stringify(user)));
-
+		},
+		// 退出登录
+		async logoutUser({ commit }) {
+			logout(),
+				commit('setUser', {})
 		}
 	},
 	getters: {},

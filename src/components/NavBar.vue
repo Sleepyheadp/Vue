@@ -19,11 +19,12 @@
                     height="42" 
                     style="cursor:pointer" 
                     @click="showDropDown = !showDropDown"
+                    :src="user.avatar"
                 />
                 <div class="dropdownMenu" v-show="showDropDown">
                     <ul class="profileMenu" @click="showDropDown = false">
                         <li><router-link to="/profile">个人主页</router-link></li>
-                        <li>退出登录</li>
+                        <li @click="logout">退出登录</li>
                     </ul>
                 </div>
             </div>
@@ -34,13 +35,15 @@
 <script setup>
 import TheIcon from "./TheIcon.vue";
 import TheAvatar from "./TheAvatar.vue";
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
 const store = useStore()
 const router = useRouter()
 
+const user = computed(() => store.state.user.user)
+console.log('user', user);
 // 下拉菜单显隐
 const showDropDown = ref(false)
 
@@ -57,6 +60,11 @@ async function searchPosts(e) {
             term: e.target.value,
         },
     });
+}
+// 退出登录方法
+async function logout() {
+    await store.dispatch('logoutUser')
+    router.push('/login')
 }
 </script>
 <style scoped>

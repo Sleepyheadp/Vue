@@ -45,3 +45,8 @@ export async function login(email, password) {
 	saveUser(result.user);
 	return result;
 }
+// 退出登录
+export function logout() {
+	localStorage.removeItem("jwtToken");
+	localStorage.removeItem("user");
+}
