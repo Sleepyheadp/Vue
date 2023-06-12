@@ -32,7 +32,7 @@ import TheAvatar from "./TheAvatar.vue";
 import { useStore } from 'vuex'
 const store = useStore()
 function publishPost() {
-    store.commit('changeUpload', true)
+    store.commit('changeShowPostUpload', true)
 }
 </script>
 <style scoped>

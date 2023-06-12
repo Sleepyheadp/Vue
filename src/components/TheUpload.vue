@@ -1,5 +1,5 @@
 <template>
-    <TheModal @close="store.commit('changeUpload', false)">
+    <TheModal @close="store.commit('changeShowPostUpload', false)">
         <div class="postUpload">
             <label class="upload" for="">
                 <img 
