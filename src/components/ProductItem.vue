@@ -6,6 +6,12 @@
 //   }
 // });
 
+import { Theme } from "../keys/Theme";
+import { inject } from "vue";
+
+const siteTitle = inject<string>("siteTitle");
+console.log(siteTitle);
+
 interface Props {
   title: string;
   price: number;
@@ -21,6 +27,10 @@ defineProps<Props>();
 //   inStock: false,
 //   imageUrl: "",
 // });
+
+const theme = inject(Theme);
+console.log(theme);
+
 </script>
 <template>
   <div class="product">
