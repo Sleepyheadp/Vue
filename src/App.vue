@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide, reactive, ref, type Ref } from "vue";
+import { provide, reactive, ref, type Ref, onMounted } from "vue";
 import ShopIcon from "./components/Icon/ShopIcon.vue";
 import ProductItem from "./components/ProductItem.vue";
 import ActionAndFilters from "./components/ActionAndFilters.vue";
@@ -106,6 +106,15 @@ function handleFilterByStock(inStock: boolean | null) {
 provide(Theme, "dark");
 provide("siteTitle", "峰华的小商店");
 
+
+const actionAndFiltersRef = ref<InstanceType<typeof ActionAndFilters> | null>(
+  null
+);
+
+onMounted(() => {
+  console.log(actionAndFiltersRef.value);
+});
+
 </script>
 
 <template>
@@ -122,6 +131,7 @@ provide("siteTitle", "峰华的小商店");
         :key="product.id"
         v-bind="product"
         class="product"
+        ref="actionAndFiltersRef"
       >
       </ProductItem>
     </div>
