@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ref, type Ref } from "vue";
+import { reactive, ref, type Ref } from "vue";
 import ShopIcon from "./components/Icon/ShopIcon.vue";
 import ProductItem from "./components/ProductItem.vue";
 import ActionAndFilters from "./components/ActionAndFilters.vue";
-
 
 interface Product {
   id: number;
@@ -43,12 +42,52 @@ const products = ref<Product[]>([
     imageUrl: "/images/t-shirt2.jpg",
   },
 ]);
+
+type SortDirections = "asc" | "desc" | "";
+
+interface SortAndFilter {
+  price: SortDirections;
+  name: SortDirections;
+  inStock: boolean | null;
+}
+
+const sortAndFilter: SortAndFilter = reactive({
+  price: "",
+  name: "",
+  inStock: null,
+});
+
+function handleSortByPrice() {
+  if (sortAndFilter.price === "asc") {
+    sortAndFilter.price = "desc";
+  } else {
+    sortAndFilter.price = "asc";
+  }
+  sortAndFilter.name = "";
+}
+
+function handleSortByName() {
+  if (sortAndFilter.name === "asc") {
+    sortAndFilter.name = "desc";
+  } else {
+    sortAndFilter.name = "asc";
+  }
+  sortAndFilter.price = "";
+}
+
+function handleFilterByStock(inStock: boolean | null) {
+  sortAndFilter.inStock = inStock;
+}
 </script>
 
 <template>
   <main>
     <h1><ShopIcon />峰华的小商店</h1>
-    <ActionAndFilters/>
+    <ActionAndFilters
+      @sort-by-price="handleSortByPrice"
+      @sort-by-name="handleSortByName"
+      @filter-by-stock="handleFilterByStock"
+    />
     <div class="productList">
       <ProductItem
         v-for="product in products"
