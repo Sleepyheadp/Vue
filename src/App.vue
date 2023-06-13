@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, type Ref } from "vue";
 import ShopIcon from "./components/Icon/ShopIcon.vue";
+import ProductItem from "./components/ProductItem.vue";
 
 interface Product {
   id: number;
@@ -46,12 +47,13 @@ const products = ref<Product[]>([
   <main>
     <h1><ShopIcon />峰华的小商店</h1>
     <div class="productList">
-      <div v-for="product in products" :key="product.id" class="product">
-        <img :src="product.imageUrl" alt="" />
-        <h2>{{ product.title }}</h2>
-        <p class="price">价格：￥{{ product.price }}</p>
-        <p>库存：{{ product.inStock ? "有货" : "缺货" }}</p>
-      </div>
+      <ProductItem
+        v-for="product in products"
+        :key="product.id"
+        v-bind="product"
+        class="product"
+      >
+      </ProductItem>
     </div>
   </main>
 </template>
@@ -81,20 +83,5 @@ h1 svg {
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   width: 60%;
-}
-
-.product {
-  box-shadow: 0px 0px 24px hsl(0deg, 0%, 0%, 0.1);
-  padding: 18px;
-  border-radius: 12px;
-}
-
-.product img {
-  height: 200px;
-}
-
-.price {
-  color: hsl(0deg, 100%, 66%);
-  font-weight: bold;
 }
 </style>
