@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted, ref } from "vue";
 const emit = defineEmits<{
   (e: "sortByPrice"): void;
   (e: "sortByName"): void;
@@ -13,12 +14,19 @@ function emitFilterByStock(e: Event) {
   }
   emit("filterByStock", inStock);
 }
+
+const selectRef = ref<HTMLSelectElement | null>(null);
+
+onMounted(() => {
+  console.log(selectRef.value?.selectedIndex);
+});
+
 </script>
 <template>
   <div class="actions">
     <button @click="emit('sortByPrice')">按价格排序</button>
     <button @click="emit('sortByName')">按名称排序</button>
-    <select @change="emitFilterByStock">
+    <select @change="emitFilterByStock" ref="selectRef">
       <option value="">按库存过滤</option>
       <option value="true">有货</option>
       <option value="false">无货</option>
