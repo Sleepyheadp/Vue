@@ -1,4 +1,4 @@
-import { createStore } from "Vuex";
+import { createStore } from "vuex";
 
 import { comment } from "./comment";
 import { post } from "./post";
